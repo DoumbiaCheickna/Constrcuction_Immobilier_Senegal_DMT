@@ -1,7 +1,8 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { listProperties, deleteProperty } from "../../../lib/firestoreService";
+import { deleteProperty, listProperties } from "../../lib/firestoreService";
+
 
 export default function PropertiesPage() {
   const [items, setItems] = useState([]);
