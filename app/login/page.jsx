@@ -17,7 +17,7 @@ export default function Login() {
     setError("");
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      router.push("/dashboard"); 
+      router.push("/"); 
     } catch (err) {
       setError("Email ou mot de passe incorrect.");
     }
@@ -28,7 +28,7 @@ export default function Login() {
     setError("");
     try {
       await signInWithPopup(auth, googleProvider);
-      router.push("/dashboard");
+      router.push("/");
     } catch (err) {
       setError("Échec de la connexion Google.");
     }

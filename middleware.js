@@ -5,8 +5,8 @@ export function middleware(req) {
 
   const isAdminRoute = req.nextUrl.pathname.startsWith("/admin");
 
-  if (!isLogged && isAdminRoute && !req.nextUrl.pathname.includes("/admin/login")) {
-    return NextResponse.redirect(new URL("/admin/login", req.url));
+  if (!isLogged && isAdminRoute && !req.nextUrl.pathname.includes("/admin/properties")) {
+    return NextResponse.redirect(new URL("/admin/properties", req.url));
   }
 
   return NextResponse.next();
