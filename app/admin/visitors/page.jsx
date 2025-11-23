@@ -1,11 +1,9 @@
 "use client";
-
 export default function Visitors() {
   const visitors = [
     { id: 1, name: "Amadou", date: "Aujourd’hui" },
     { id: 2, name: "Fatou", date: "Hier" },
   ];
-
   return (
     <div>
       <h1 className="text-2xl font-bold mb-6">Visiteurs</h1>

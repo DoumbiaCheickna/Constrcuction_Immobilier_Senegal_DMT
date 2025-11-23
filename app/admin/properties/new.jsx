@@ -1,30 +1,3 @@
-// "use client";
-// import { useState } from "react";
-
-// export default function NewProperty() {
-//   const [form, setForm] = useState({ type: "", prix: "", quartier: "", description: "" });
-
-//   const handleChange = e => {
-//     setForm({ ...form, [e.target.name]: e.target.value });
-//   };
-
-//   return (
-//     <div>
-//       <h1 className="text-2xl font-bold mb-4">Ajouter un bien immobilier</h1>
-
-//       <div className="bg-white p-6 shadow rounded-xl max-w-xl">
-//         <div className="space-y-4">
-//           <input name="type" placeholder="Type" onChange={handleChange} className="w-full border p-3 rounded"/>
-//           <input name="prix" placeholder="Prix" onChange={handleChange} className="w-full border p-3 rounded"/>
-//           <input name="quartier" placeholder="Quartier" onChange={handleChange} className="w-full border p-3 rounded"/>
-//           <textarea name="description" placeholder="Description" onChange={handleChange} className="w-full border p-3 rounded"/>
-//         </div>
-
-//         <button className="mt-4 px-4 py-2 bg-green-600 text-white rounded-lg">Enregistrer</button>
-//       </div>
-//     </div>
-//   );
-// }
 "use client";
 import { useState } from "react";
 import { uploadImageFile } from "../../../lib/uploadImage";

@@ -1,8 +1,9 @@
 "use client";
 import { useEffect, useState } from "react";
-import { db } from "@/firebase";
+
 import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
 import Link from "next/link";
+import { db } from "../../firebase/config";
 
 export default function BiensList() {
   const [biens, setBiens] = useState([]);

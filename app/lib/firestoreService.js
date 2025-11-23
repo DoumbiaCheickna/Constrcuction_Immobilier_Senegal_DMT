@@ -1,6 +1,7 @@
 // lib/firestoreService.js
 import { collection, addDoc, doc, getDoc, updateDoc, deleteDoc, query, orderBy, getDocs, onSnapshot } from "firebase/firestore";
-import { db } from "./firebaseClient";
+import { db } from "../firebase/config";
+
 
 // properties
 export const propertiesCol = () => collection(db, "properties");
