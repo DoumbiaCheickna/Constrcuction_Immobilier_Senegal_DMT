@@ -279,9 +279,9 @@ export default function Navbar() {
           </div>
 
           <div className="flex items-center gap-4 text-sm">
-            <Link href="/search" className="hover:underline">Recherche</Link>
+            <Link href="/search" className="hover:underline">Search</Link>
             <Link href="/login" className="hover:underline">Login</Link>
-            <Link href="/register" className="hover:underline">Créer un compte</Link>
+            <Link href="/register" className="hover:underline">Register</Link>
           </div>
 
         </div>
