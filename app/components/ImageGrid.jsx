@@ -125,7 +125,7 @@ export default function ImageGrid({ filter }) {
         <h2 className="text-2xl md:text-3xl font-extrabold text-gray-900">
           Nos réalisations
         </h2>
-        <p className="text-sm text-gray-500">8 propriétés sélectionnées — style moderne</p>
+        <p className="text-sm text-gray-500"></p>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">

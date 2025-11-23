@@ -17,7 +17,7 @@
 // }     git config --global user.email "cheicknadevdot@gmail.com"
   //     git config --global user.name "DoumbiaCheickna"
 "use client";
-
+import WhatsAppButton from '../components/WhatsAppButton';
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { useState } from "react";
@@ -137,6 +137,7 @@ export default function Register() {
       </div>
 
       <Footer />
+        <WhatsAppButton />
     </>
   );
 }

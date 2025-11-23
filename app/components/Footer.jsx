@@ -80,7 +80,7 @@ const Footer = () => {
       </div>
       <div className="copyright">
         <div className="copyright-content">
-          <span>DMT Construction Immobilier Sénégal; 2023; Tous droits Réservés</span>
+          <span>DMT Construction Immobilier Sénégal 2025 Tous droits Réservés</span>
         </div>
       </div>
       <style jsx>{`

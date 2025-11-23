@@ -1,7 +1,7 @@
 import Footer from "../components/Footer";
 import ImageGrid from "../components/ImageGrid";
 import Navbar from "../components/Navbar";
-
+import WhatsAppButton from '../components/WhatsAppButton';
 export default function VillasPage() {
   return (
     <>
@@ -12,6 +12,7 @@ export default function VillasPage() {
       <ImageGrid filter="appartement" />
     </main>
      <Footer />
+       <WhatsAppButton />
     </>
   );
 }
