@@ -14,7 +14,8 @@
 // <Footer />
 // </>
 // );
-// }
+// }     git config --global user.email "cheicknadevdot@gmail.com"
+  //     git config --global user.name "DoumbiaCheickna"
 "use client";
 
 import Navbar from "../components/Navbar";
