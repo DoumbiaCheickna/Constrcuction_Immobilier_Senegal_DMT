@@ -1,208 +1,24 @@
 // "use client";
 // import Link from "next/link";
-// import { useState } from "react";
-// import { FaFacebookF, FaTwitter, FaLinkedin, FaWhatsapp } from "react-icons/fa";
-
-// export default function Navbar() {
-//   const [activeItem, setActiveItem] = useState(null);
-//   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-//   const today = new Date();
-//   const [currentMonth, setCurrentMonth] = useState(today.getMonth());
-//   const [currentYear, setCurrentYear] = useState(today.getFullYear());
-//   const [currentDay] = useState(today.getDate());
-
-//   const monthNames = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
-//   const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
-
-//   const handlePrev = () => {
-//     setCurrentMonth(currentMonth === 0 ? 11 : currentMonth - 1);
-//     if (currentMonth === 0) setCurrentYear(currentYear - 1);
-//   };
-//   const handleNext = () => {
-//     setCurrentMonth(currentMonth === 11 ? 0 : currentMonth + 1);
-//     if (currentMonth === 11) setCurrentYear(currentYear + 1);
-//   };
-
-//   const menuItems = [
-//     { name: "ACCUEIL", href: "/" },
-//     { name: "NOUROUDINE", href: "/diass" },
-//     { name: "VILLAS & APPARTEMENTS", href: "/villas" },
-//     { name: "NOTRE ÉQUIPE", href: "/equipe" },
-//     { name: "CONTACTS", href: "/contact" }
-//   ];
-
-//   return (
-//     <header className="w-full sticky top-0 z-50 bg-white shadow">
-
-//       {/* ▬▬▬▬ BARRE TOP MARKETING ▬▬▬▬ */}
-//       <div className="bg-[#143F6B] text-white py-2">
-//         <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
-//           <p className="text-xs md:text-sm font-light tracking-wide">
-//             ⭐ Trouvez votre futur <span className="font-bold">appartement, villa ou studio</span> en toute confiance avec nous.
-//           </p>
-//           <div className="hidden md:flex items-center gap-3 text-white">
-//             <FaFacebookF className="cursor-pointer hover:text-blue-300" />
-//             <FaTwitter className="cursor-pointer hover:text-blue-300" />
-//             <FaLinkedin className="cursor-pointer hover:text-blue-300" />
-//             <FaWhatsapp className="cursor-pointer hover:text-green-400" />
-//           </div>
-//         </div>
-//       </div>
-
-//       {/* ▬▬▬▬ CALENDRIER ▬▬▬▬ */}
-//       <div className="w-full bg-white border-b border-gray-300">
-//         <div className="max-w-7xl mx-auto px-4 py-2 flex items-center justify-between">
-
-//           {/* GRID DES JOURS */}
-//           <div className="flex gap-1 overflow-x-auto flex-1">
-//             {Array.from({ length: daysInMonth }, (_, i) => i + 1).map(day => (
-//               <div
-//                 key={day}
-//                 className={`w-7 h-7 flex items-center justify-center rounded text-sm ${
-//                   day === currentDay 
-//                     ? "bg-blue-600 text-white font-bold" 
-//                     : "bg-gray-200 text-gray-700"
-//                 }`}
-//               >
-//                 {day}
-//               </div>
-//             ))}
-//           </div>
-
-//           {/* Mois / année */}
-//           <div className="flex items-center gap-2 text-black font-bold text-lg border-2 border-blue-600 rounded-xl px-4 py-2 mx-2">
-//             <button onClick={handlePrev} className="hover:bg-gray-200 px-2 py-1 rounded">{'<'}</button>
-//             <div className="flex flex-col items-center leading-tight">
-//               <div>{monthNames[currentMonth]}</div>
-//               <div className="text-sm font-light">{currentYear}</div>
-//             </div>
-//             <button onClick={handleNext} className="hover:bg-gray-200 px-2 py-1 rounded">{'>'}</button>
-//           </div>
-
-//         </div>
-//       </div>
-
-//       {/* ▬▬▬▬ INFO & LIENS ▬▬▬▬ */}
-//       <div className="bg-[#E8E6E6] border-b border-gray-300">
-//         <div className="max-w-7xl mx-auto px-4 py-2 flex justify-between items-center">
-//           <div className="flex items-center gap-2 text-sm text-gray-700">
-//             <svg width="18" height="18" fill="none" viewBox="0 0 24 24">
-//               <path stroke="gray" strokeWidth="1.5"
-//                 d="M12 6v6l4 2m6-2a10 10 0 1 1-20 0 10 10 0 0 1 20 0Z" />
-//             </svg>
-//             <span className="font-semibold">Lun - Ven :</span> 08h - 17h
-//           </div>
-//           <div className="flex items-center gap-4 text-sm">
-//             <Link href="/search" className="hover:underline">Search</Link>
-//             <Link href="/login" className="hover:underline">Login</Link>
-//             <Link href="/register" className="hover:underline">Register</Link>
-//           </div>
-//         </div>
-//       </div>
-
-//       {/* ▬▬▬▬ LOGO + NAVIGATION PRINCIPALE ▬▬▬▬ */}
-//       <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
-
-//         {/* Logo */}
-//         <img src="/logo.png" alt="logo" className="w-40" />
-
-//         {/* Menu desktop */}
-//         <nav className="hidden md:flex gap-10 text-sm font-semibold text-gray-700">
-//           {menuItems.map(item => (
-//             <Link
-//               key={item.name}
-//               href={item.href}
-//               onClick={() => setActiveItem(item.name)}
-//               className={`px-5 py-2 rounded transition ${
-//                 activeItem === item.name
-//                   ? "border-2 border-blue-700 bg-blue-100"
-//                   : "hover:border-blue-700 hover:bg-blue-50"
-//               }`}
-//             >
-//               {item.name}
-//             </Link>
-//           ))}
-//         </nav>
-
-//         {/* Menu mobile (hamburger) */}
-//         <div className="md:hidden flex items-center gap-3">
-//           <button
-//             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-//             className="p-2 rounded bg-gray-200"
-//           >
-//             {mobileMenuOpen ? "✖" : "☰"}
-//           </button>
-//         </div>
-
-//         {/* Contact téléphonique */}
-//         <div className="hidden md:flex items-center gap-3">
-//           <div className="bg-blue-700 p-3 rounded shadow text-white">
-//             <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-//               <path
-//                 d="M21 16.5v3a1.5 1.5 0 0 1-1.5 1.5 17.5 17.5 0 0 1-15.5-15.5A1.5 1.5 0 0 1 3.5 4h3"
-//                 stroke="white" strokeWidth="1.6" strokeLinecap="round"
-//               />
-//             </svg>
-//           </div>
-//           <div className="text-gray-700 text-sm leading-tight">
-//             <div className="text-xs">Tèl.</div>
-//             <div className="text-blue-700 font-bold">33 825 43 40</div>
-//           </div>
-//         </div>
-
-//       </div>
-
-//       {/* ▬▬▬▬ MENU MOBILE OUVERT ▬▬▬▬ */}
-//       {mobileMenuOpen && (
-//         <nav className="md:hidden flex flex-col gap-2 px-4 py-4 bg-white shadow-lg border-t border-gray-300">
-//           {menuItems.map(item => (
-//             <Link
-//               key={item.name}
-//               href={item.href}
-//               onClick={() => { setActiveItem(item.name); setMobileMenuOpen(false); }}
-//               className={`px-5 py-2 rounded transition ${
-//                 activeItem === item.name
-//                   ? "border-2 border-blue-700 bg-blue-100"
-//                   : "hover:border-blue-700 hover:bg-blue-50"
-//               }`}
-//             >
-//               {item.name}
-//             </Link>
-//           ))}
-//         </nav>
-//       )}
-
-//     </header>
-//   );
-// }
-// "use client";
-// import Link from "next/link";
 // import { useState, useEffect } from "react";
-// import { FaFacebookF, FaTwitter, FaLinkedin, FaWhatsapp } from "react-icons/fa";
+// import { FaFacebookF, FaTwitter, FaLinkedin, FaWhatsapp, FaSearch, FaTiktok, FaGoogle, FaInstagram } from "react-icons/fa";
 // import { auth } from "../firebase/config";
 // import { onAuthStateChanged, signOut } from "firebase/auth";
-
+// import { usePathname } from "next/navigation";
 // export default function Navbar() {
-//   const [activeItem, setActiveItem] = useState(null);
+//   const [activeItem, setActiveItem] = useState("ACCUEIL");
 //   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-//   const [user, setUser] = useState(null); // <-- USER AUTH
+//   const [user, setUser] = useState(null);
 //   const [profileOpen, setProfileOpen] = useState(false);
-
-//   // 🔥 Vérifier utilisateur logué
 //   useEffect(() => {
-//     const unsub = onAuthStateChanged(auth, (currentUser) => {
-//       setUser(currentUser);
-//     });
+//     const unsub = onAuthStateChanged(auth, (currentUser) => setUser(currentUser));
 //     return () => unsub();
 //   }, []);
 
-//   // Déconnexion Firebase
 //   const handleLogout = async () => {
 //     await signOut(auth);
 //     setProfileOpen(false);
 //   };
-
 //   const today = new Date();
 //   const [currentMonth, setCurrentMonth] = useState(today.getMonth());
 //   const [currentYear, setCurrentYear] = useState(today.getFullYear());
@@ -210,15 +26,15 @@
 
 //   const monthNames = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
 //   const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
-
+//  const pathname = usePathname();
 //   const handlePrev = () => {
-//     setCurrentMonth(currentMonth === 0 ? 11 : currentMonth - 1);
-//     if (currentMonth === 0) setCurrentYear(currentYear - 1);
+//     if (currentMonth === 0) { setCurrentMonth(11); setCurrentYear(c => c - 1); }
+//     else setCurrentMonth(m => m - 1);
 //   };
 
 //   const handleNext = () => {
-//     setCurrentMonth(currentMonth === 11 ? 0 : currentMonth + 1);
-//     if (currentMonth === 11) setCurrentYear(currentYear + 1);
+//     if (currentMonth === 11) { setCurrentMonth(0); setCurrentYear(c => c + 1); }
+//     else setCurrentMonth(m => m + 1);
 //   };
 
 //   const menuItems = [
@@ -226,19 +42,17 @@
 //     { name: "NOUROUDINE", href: "/diass" },
 //     { name: "VILLAS & APPARTEMENTS", href: "/villas" },
 //     { name: "NOTRE ÉQUIPE", href: "/equipe" },
-//     { name: "CONTACTS", href: "/contact" }
+//     { name: "CONTACTS", href: "/contact" },
 //   ];
 
 //   return (
-//     <header className="w-full sticky top-0 z-50 bg-white shadow">
-
-//       {/* ▬▬▬▬ BARRE TOP MARKETING ▬▬▬▬ */}
-//       <div className="bg-[#143F6B] text-white py-2">
+//     <header className="w-full sticky top-0 z-50 bg-white shadow-lg">
+//       <div className="hidden md:block bg-[#143F6B] text-white py-2">
 //         <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
-//           <p className="text-xs md:text-sm font-light tracking-wide">
-//             ⭐ Trouvez votre futur <span className="font-bold">appartement, villa ou studio</span> en toute confiance avec nous.
+//           <p className="text-sm font-light">
+//             ⭐ Trouvez votre futur appartement, villa ou studio, service professionnel et rapide.
 //           </p>
-//           <div className="hidden md:flex items-center gap-3 text-white">
+//           <div className="flex items-center gap-3">
 //             <FaFacebookF />
 //             <FaTwitter />
 //             <FaLinkedin />
@@ -246,154 +60,203 @@
 //           </div>
 //         </div>
 //       </div>
+// <div className="w-full bg-white border-b border-gray-200">
+//   <div className="max-w-7xl mx-auto px-4 py-2 flex items-center justify-between gap-4">
+//     <div className="flex-shrink-0 text-center px-4 py-2 rounded-xl bg-white border border-gray-200 shadow-sm">
+//       <div className="text-lg font-bold">{today.getDate()}</div>
+//       <div className="text-xs text-gray-600 -mt-1">{monthNames[today.getMonth()]}</div>
+//       <div className="text-xs text-gray-500">{today.getFullYear()}</div>
+//     </div>
+//     <div className="flex gap-2 overflow-x-auto flex-1">
+//       {Array.from({ length: daysInMonth }, (_, i) => i + 1).map(day => (
+//         <div
+//           key={day}
+//           className={`flex-shrink-0 w-8 h-8 flex items-center justify-center rounded text-sm transition
+//             ${day === currentDay ? "bg-blue-600 text-white font-bold shadow" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}
+//           aria-current={day === currentDay ? "date" : undefined}
+//         >
+//           {day}
+//         </div>
+//       ))}
+//     </div>
+//     <div className="flex items-center gap-4">
+//       <div className="text-sm text-gray-400">{monthNames[(currentMonth - 1 + 12) % 12]}</div>
+//       <button
+//         onClick={handlePrev}
+//         className="w-6 h-6 flex items-center justify-center hover:bg-gray-200 rounded"
+//       >
+//         <div className="w-0 h-0 border-t-6 border-b-6 border-r-8 border-t-transparent border-b-transparent border-r-gray-800"></div>
+//       </button>
+//       <div className="text-center leading-tight">
+//         <div className="text-xs uppercase font-semibold text-gray-600">{monthNames[currentMonth]}</div>
+//         <div className="text-lg font-bold text-gray-900">{currentDay}</div>
+//         <div className="text-xs text-gray-500">{currentYear}</div>
+//       </div>
+//       <button
+//         onClick={handleNext}
+//         className="w-6 h-6 flex items-center justify-center hover:bg-gray-200 rounded"
+//       >
+//         <div className="w-0 h-0 border-t-6 border-b-6 border-l-8 border-t-transparent border-b-transparent border-l-gray-800"></div>
+//       </button>
+//       <div className="text-sm text-gray-400">{monthNames[(currentMonth + 1) % 12]}</div>
+//     </div>
+//     <div className="border-l border-black h-0 mx-0"></div>
+//     <div className="grid grid-cols-2 gap-2">
+//       <a href="#" className="flex items-center justify-center w-10 h-10 rounded-full bg-blue-600 text-white hover:opacity-90 transition">
+//         <FaTwitter />
+//       </a>
+//       <a href="#" className="flex items-center justify-center w-10 h-10 rounded-full bg-pink-500 text-white hover:opacity-90 transition">
+//         <FaInstagram />
+//       </a>
+//       <a href="#" className="flex items-center justify-center w-10 h-10 rounded-full bg-red-500 text-white hover:opacity-90 transition">
+//         <FaGoogle />
+//       </a>
+//       <a href="#" className="flex items-center justify-center w-10 h-10 rounded-full bg-black text-white hover:opacity-90 transition">
+//         <FaTiktok />
+//       </a>
+//     </div>
 
-//       {/* ▬▬▬▬ CALENDRIER ▬▬▬▬ */}
-//       <div className="w-full bg-white border-b border-gray-300">
-//         <div className="max-w-7xl mx-auto px-4 py-2 flex items-center justify-between">
+//   </div>
+// </div>
 
-//           <div className="flex gap-1 overflow-x-auto flex-1">
-//             {Array.from({ length: daysInMonth }, (_, i) => i + 1).map(day => (
-//               <div
-//                 key={day}
-//                 className={`w-7 h-7 flex items-center justify-center rounded text-sm ${
-//                   day === currentDay 
-//                     ? "bg-blue-600 text-white font-bold" 
-//                     : "bg-gray-200 text-gray-700"
-//                 }`}
-//               >
-//                 {day}
+//       <div className="bg-[#E8E6E6] border-b border-gray-200">
+//         <div className="max-w-7xl mx-auto px-4 py-2 flex items-center justify-between gap-4">
+//           <div className="flex items-center gap-2 text-sm text-gray-700">
+//             <span className="font-semibold">Horaires :</span>
+//             <span> Lun - Ven • 08h - 17h</span>
+//           </div>
+//           <div className="flex items-center gap-4">
+//             <Link href="/search" className="flex items-center gap-2 text-sm px-3 py-1 rounded hover:bg-gray-200">
+//               <FaSearch /> <span className="hidden sm:inline">Search</span>
+//             </Link>
+//             {!user && (
+//               <div className="hidden md:flex items-center gap-3 text-sm">
+//                 <Link href="/login" className="px-3 py-1 rounded hover:bg-gray-200">Login</Link>
+//                 <Link href="/register" className="px-3 py-1 rounded  hover:opacity-90">Register</Link>
 //               </div>
-//             ))}
-//           </div>
+//             )}
+//             {user && (
+//               <div className="relative">
+//                 <button
+//                   onClick={() => setProfileOpen(p => !p)}
+//                   className="flex items-center gap-2 rounded-full p-1 hover:bg-gray-200"
+//                 >
+//                   <img src={user.photoURL || "/User-icon.png"} alt="avatar" className="w-9 h-9 rounded-full object-cover border" />
+//                   <span className="hidden md:inline font-semibold">{user.displayName || "Compte"}</span>
+//                 </button>
 
-//           <div className="flex items-center gap-2 text-black font-bold text-lg border-2 border-blue-600 rounded-xl px-4 py-2 mx-2">
-//             <button onClick={handlePrev}>{'<'}</button>
-//             <div className="flex flex-col items-center leading-tight">
-//               <div>{monthNames[currentMonth]}</div>
-//               <div className="text-sm font-light">{currentYear}</div>
-//             </div>
-//             <button onClick={handleNext}>{'>'}</button>
+//                 {profileOpen && (
+//                   <div className="absolute right-0 mt-2 w-48 bg-white rounded shadow-lg border z-50">
+//                     <div className="px-3 py-2">
+//                       <p className="font-semibold text-sm">{user.displayName || "Utilisateur"}</p>
+//                       <p className="text-xs text-gray-500">{user.email}</p>
+//                     </div>
+//                     <hr />
+//                     <Link href="/profile" className="block px-3 py-2 hover:bg-gray-100">Mon profil</Link>
+//                     <button onClick={handleLogout} className="w-full text-left px-3 py-2 text-red-600 hover:bg-gray-100">Déconnexion</button>
+//                   </div>
+//                 )}
+//               </div>
+//             )}
+//             {!user && (
+//               <img src="/default-user.jpg" alt="default" className="w-9 h-9 rounded-full object-cover border md:hidden" />
+//             )}
 //           </div>
-
 //         </div>
 //       </div>
+//       <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
+//         <img src="/logo.png" alt="logo" className="w-30" />
+//            <nav className="hidden md:flex gap-12 text-sm font-semibold">
+//       {menuItems.map(item => {
+//         const isActive = pathname === item.href;
+//         return (
+//           <Link
+//             key={item.name}
+//             href={item.href}
+//             className={`px-4 py-2 rounded border-2 transition-all duration-200
+//               ${isActive ? "bg-blue-100 border-blue-500" : "border-transparent hover:border-blue-500 hover:bg-blue-50"}`}
+//           >
+//             {item.name}
+//           </Link>
+//         );
+//       })}
+//     </nav>
+//         <div className="md:hidden flex items-center gap-2">
+//           <button onClick={() => setMobileMenuOpen(m => !m)} className="p-2 rounded bg-gray-100">
+//             {mobileMenuOpen ? "✖" : "☰"}
+//           </button>
+//         </div>
+//       </div>
+//       {mobileMenuOpen && (
+//         <div className="md:hidden bg-white border-t shadow-lg">
+//           <div className="px-4 py-3">
+//             <Link href="/search" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-2 px-3 py-2 rounded hover:bg-gray-100">
+//               <FaSearch /> <span>Search</span>
+//             </Link>
+// <nav className="flex flex-col gap-12 mt-3">
+//   {menuItems.map(item => (
+//     <Link
+//       key={item.name}
+//       href={item.href}
+//       onClick={() => { setActiveItem(item.name); setMobileMenuOpen(false); }}
+//       className={`
+//         px-3 py-2 rounded border-2 border-transparent
+//         hover:border-blue-500
+//         hover:bg-blue-50
+//         transition-all duration-200
+//       `}
+//     >
+//       {item.name}
+//     </Link>
+//   ))}
+// </nav>
 
-//       {/* ▬▬▬▬ INFO + LOGIN/REGISTER + PROFIL ▬▬▬▬ */}
-//       <div className="bg-[#E8E6E6] border-b border-gray-300">
-//         <div className="max-w-7xl mx-auto px-4 py-2 flex justify-between items-center">
-//           <div className="text-sm text-gray-700 flex items-center gap-2">
-//             <span className="font-semibold">Lun - Ven :</span> 08h - 17h
-//           </div>
 
-//           {/* 🔥 SI USER NON CONNECTÉ */}
-//           {!user && (
-//             <div className="flex items-center gap-4 text-sm">
-//               <Link href="/login" className="hover:underline">Login</Link>
-//               <Link href="/register" className="hover:underline">Register</Link>
-//             </div>
-//           )}
 
-//           {/* 🔥 SI USER CONNECTÉ */}
-//           {user && (
-//             <div className="relative">
-//               <div
-//                 className="flex items-center gap-2 cursor-pointer"
-//                 onClick={() => setProfileOpen(!profileOpen)}
-//               >
-//                 <img
-//                   src={user.photoURL || "/avatar.png"}
-//                   className="w-8 h-8 rounded-full border"
-//                   alt="avatar"
-//                 />
-//                 <span className="font-semibold">{user.displayName || "Compte"}</span>
-//               </div>
-
-//               {profileOpen && (
-//                 <div className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded p-3 border">
-//                   <p className="font-semibold text-gray-700">{user.email}</p>
-//                   <hr className="my-2" />
-
-//                   <Link
-//                     href="/profile"
-//                     className="block py-1 hover:bg-gray-100 rounded"
-//                   >
-//                     Mon profil
-//                   </Link>
-
-//                   <button
-//                     onClick={handleLogout}
-//                     className="w-full text-left py-1 text-red-600 hover:bg-gray-100 rounded"
-//                   >
-//                     Déconnexion
-//                   </button>
-//                 </div>
+//             <div className="mt-4 border-t pt-3">
+//               {!user ? (
+//                 <>
+//                   <Link href="/login" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 rounded hover:bg-gray-100">Login</Link>
+//                   <Link href="/register" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 mt-2 rounded bg-blue-600 text-white text-center">Register</Link>
+//                 </>
+//               ) : (
+//                 <>
+//                   <Link href="/profile" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 rounded hover:bg-gray-100">Mon profil</Link>
+//                   <button onClick={() => { handleLogout(); setMobileMenuOpen(false); }} className="w-full text-left px-3 py-2 text-red-600">Déconnexion</button>
+//                 </>
 //               )}
 //             </div>
-//           )}
-
+//           </div>
 //         </div>
-//       </div>
+//       )}
 
-//       {/* ▬▬▬▬ MENU PRINCIPAL ▬▬▬▬ */}
-//       <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
-//         <img src="/logo.png" className="w-40" />
-
-//         <nav className="hidden md:flex gap-10 text-sm font-semibold text-gray-700">
-//           {menuItems.map(item => (
-//             <Link
-//               key={item.name}
-//               href={item.href}
-//               onClick={() => setActiveItem(item.name)}
-//               className={`px-5 py-2 rounded transition ${
-//                 activeItem === item.name
-//                   ? "border-2 border-blue-700 bg-blue-100"
-//                   : "hover:border-blue-700 hover:bg-blue-50"
-//               }`}
-//             >
-//               {item.name}
-//             </Link>
-//           ))}
-//         </nav>
-
-//         <button
-//           className="md:hidden p-2 bg-gray-200 rounded"
-//           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-//         >
-//           {mobileMenuOpen ? "✖" : "☰"}
-//         </button>
-
-//       </div>
 //     </header>
 //   );
 // }
 "use client";
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { FaFacebookF, FaTwitter, FaLinkedin, FaWhatsapp } from "react-icons/fa";
+import { FaFacebookF, FaTwitter, FaLinkedin, FaWhatsapp, FaSearch, FaTiktok, FaGoogle, FaInstagram } from "react-icons/fa";
 import { auth } from "../firebase/config";
 import { onAuthStateChanged, signOut } from "firebase/auth";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
-  const [activeItem, setActiveItem] = useState(null);
+  const [activeItem, setActiveItem] = useState("ACCUEIL");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [user, setUser] = useState(null);
   const [profileOpen, setProfileOpen] = useState(false);
 
-  // Vérifier l'état utilisateur
   useEffect(() => {
-    const unsub = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-    });
+    const unsub = onAuthStateChanged(auth, (currentUser) => setUser(currentUser));
     return () => unsub();
   }, []);
 
-  // Déconnexion
   const handleLogout = async () => {
     await signOut(auth);
     setProfileOpen(false);
   };
 
-  // Calendrier
   const today = new Date();
   const [currentMonth, setCurrentMonth] = useState(today.getMonth());
   const [currentYear, setCurrentYear] = useState(today.getFullYear());
@@ -401,15 +264,16 @@ export default function Navbar() {
 
   const monthNames = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
   const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+  const pathname = usePathname();
 
   const handlePrev = () => {
-    setCurrentMonth(currentMonth === 0 ? 11 : currentMonth - 1);
-    if (currentMonth === 0) setCurrentYear(currentYear - 1);
+    if (currentMonth === 0) { setCurrentMonth(11); setCurrentYear(c => c - 1); }
+    else setCurrentMonth(m => m - 1);
   };
 
   const handleNext = () => {
-    setCurrentMonth(currentMonth === 11 ? 0 : currentMonth + 1);
-    if (currentMonth === 11) setCurrentYear(currentYear + 1);
+    if (currentMonth === 11) { setCurrentMonth(0); setCurrentYear(c => c + 1); }
+    else setCurrentMonth(m => m + 1);
   };
 
   const menuItems = [
@@ -421,148 +285,216 @@ export default function Navbar() {
   ];
 
   return (
-    <header className="w-full sticky top-0 z-50 bg-white shadow">
+    <header className="w-full sticky top-0 z-50 bg-white shadow-lg">
 
-      {/* ▬▬▬▬ BARRE TOP MARKETING ▬▬▬▬ */}
-      <div className="bg-[#143F6B] text-white py-2">
+      {/* Top bar desktop */}
+      <div className="hidden md:block bg-[#143F6B] text-white py-2">
         <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
-          <p className="text-xs md:text-sm font-light">
-            ⭐ Trouvez votre futur logement avec nous.
+          <p className="text-sm font-light">
+            ⭐ Trouvez votre futur appartement, villa ou studio, service professionnel et rapide.
           </p>
-          <div className="hidden md:flex items-center gap-3 text-white">
+          {/* <div className="flex items-center gap-3">
             <FaFacebookF />
             <FaTwitter />
             <FaLinkedin />
             <FaWhatsapp />
-          </div>
+          </div> */}
+          <div className="flex items-center gap-3">
+  <a href="https://facebook.com/tonCompte" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition">
+    <FaFacebookF />
+  </a>
+  <a href="https://twitter.com/tonCompte" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition">
+    <FaTwitter />
+  </a>
+  <a href="https://linkedin.com/in/tonCompte" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition">
+    <FaLinkedin />
+  </a>
+  <a href="https://wa.me/tonNumero" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition">
+    <FaWhatsapp />
+  </a>
+</div>
+
         </div>
       </div>
 
-      {/* ▬▬▬▬ CALENDRIER + AVATAR DEFAULT ▬▬▬▬ */}
-      <div className="w-full bg-white border-b border-gray-300">
-        <div className="max-w-7xl mx-auto px-4 py-2 flex justify-between items-center">
+      {/* Calendar section */}
+      <div className="w-full bg-white border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 py-2 flex flex-wrap md:flex-nowrap items-center justify-between gap-4">
+          
+          {/* Date */}
+          <div className="flex-shrink-0 text-center px-4 py-2 rounded-xl bg-white border border-gray-200 shadow-sm">
+            <div className="text-lg font-bold">{today.getDate()}</div>
+            <div className="text-xs text-gray-600 -mt-1">{monthNames[today.getMonth()]}</div>
+            <div className="text-xs text-gray-500">{today.getFullYear()}</div>
+          </div>
 
-          {/* CALENDRIER */}
-          <div className="flex gap-1 overflow-x-auto flex-1">
+          {/* Days grid */}
+          <div className="flex gap-2 overflow-x-auto flex-1">
             {Array.from({ length: daysInMonth }, (_, i) => i + 1).map(day => (
               <div
                 key={day}
-                className={`w-7 h-7 flex items-center justify-center rounded text-sm ${
-                  day === currentDay
-                    ? "bg-blue-600 text-white font-bold"
-                    : "bg-gray-200 text-gray-700"
-                }`}
+                className={`flex-shrink-0 w-8 h-8 flex items-center justify-center rounded text-sm transition
+                  ${day === currentDay ? "bg-blue-600 text-white font-bold shadow" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}
+                aria-current={day === currentDay ? "date" : undefined}
               >
                 {day}
               </div>
             ))}
           </div>
 
-          {/* MOIS / ANNÉE */}
-          <div className="flex items-center gap-2 text-black font-bold text-lg border-2 border-blue-600 rounded-xl px-4 py-2 mx-2">
-            <button onClick={handlePrev}>{'<'}</button>
-            <div className="flex flex-col items-center">
-              <div>{monthNames[currentMonth]}</div>
-              <div className="text-sm font-light">{currentYear}</div>
+          {/* Month navigation */}
+          <div className="flex items-center gap-4">
+            <div className="text-sm text-gray-200">{monthNames[(currentMonth - 1 + 12) % 12]}</div>
+            <button
+              onClick={handlePrev}
+              className="w-6 h-6 flex items-center justify-center hover:bg-gray-200 rounded"
+            >
+              <div className="w-0 h-0 border-t-6 border-b-6 border-r-8 border-t-transparent border-b-transparent border-r-gray-800"></div>
+            </button>
+            <div className="text-center leading-tight">
+              <div className="text-xs uppercase font-semibold text-gray-600">{monthNames[currentMonth]}</div>
+              <div className="text-lg font-bold text-gray-900">{currentDay}</div>
+              <div className="text-xs text-gray-500">{currentYear}</div>
             </div>
-            <button onClick={handleNext}>{'>'}</button>
+            <button
+              onClick={handleNext}
+              className="w-6 h-6 flex items-center justify-center hover:bg-gray-200 rounded"
+            >
+              <div className="w-0 h-0 border-t-6 border-b-6 border-l-8 border-t-transparent border-b-transparent border-l-gray-800"></div>
+            </button>
+            <div className="text-sm text-gray-400">{monthNames[(currentMonth + 1) % 12]}</div>
           </div>
 
-          {/* IMAGE PAR DÉFAUT À DROITE */}
-          <img
-            src="/default-user.jpg"
-            className="w-15 h-15 ml-4 rounded-full border object-cover"
-            alt="default user"
-          />
+          {/* Social icons */}
+          {/* <div className="grid grid-cols-2 gap-2">
+            <a href="#" className="flex items-center justify-center w-10 h-10 rounded-full bg-blue-600 text-white hover:opacity-90 transition"><FaTwitter /></a>
+            <a href="#" className="flex items-center justify-center w-10 h-10 rounded-full bg-pink-500 text-white hover:opacity-90 transition"><FaInstagram /></a>
+            <a href="" className="flex items-center justify-center w-10 h-10 rounded-full bg-red-500 text-white hover:opacity-90 transition"><FaGoogle /></a>
+            <a href="#" className="flex items-center justify-center w-10 h-10 rounded-full bg-black text-white hover:opacity-90 transition"><FaTiktok /></a>
+          </div> */}
+          <div className="grid grid-cols-2 gap-2">
+  <a href="https://twitter.com/tonCompte" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-5 h-5 rounded-full bg-blue-600 text-white hover:opacity-90 transition">
+    <FaTwitter />
+  </a>
+  <a href="https://instagram.com/tonCompte" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-5 h-5 rounded-full bg-pink-500 text-white hover:opacity-90 transition">
+    <FaInstagram />
+  </a>
+  <a href="https://google.com" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-5 h-5 rounded-full bg-red-500 text-white hover:opacity-90 transition">
+    <FaGoogle />
+  </a>
+  <a href="https://tiktok.com/@tonCompte" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-5 h-5 rounded-full bg-black text-white hover:opacity-90 transition">
+    <FaTiktok />
+  </a>
+</div>
+
         </div>
       </div>
 
-      {/* ▬▬▬▬ INFO + AUTH ▬▬▬▬ */}
-      <div className="bg-[#E8E6E6] border-b border-gray-300">
-        <div className="max-w-7xl mx-auto px-4 py-2 flex justify-between items-center">
-          
-          <div className="text-sm text-gray-700 flex items-center gap-2">
-            <span className="font-semibold">Lun - Ven :</span> 08h - 17h
+      {/* Middle info bar */}
+      <div className="bg-[#E8E6E6] border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 py-2 flex flex-wrap md:flex-nowrap items-center justify-between gap-4">
+          <div className="flex items-center gap-2 text-sm text-gray-700">
+            <span className="font-semibold">Horaires :</span>
+            <span> Lun - Ven • 08h - 17h</span>
           </div>
-
-          {/* SI NON CONNECTÉ */}
-          {!user && (
-            <div className="flex items-center gap-4 text-sm">
-              <Link href="/login" className="hover:underline">Login</Link>
-              <Link href="/register" className="hover:underline">Register</Link>
-            </div>
-          )}
-
-          {/* SI CONNECTÉ */}
-          {user && (
-            <div className="relative">
-              <div
-                className="flex items-center gap-2 cursor-pointer"
-                onClick={() => setProfileOpen(!profileOpen)}
-              >
-                <img
-                  src={user.photoURL || "/User-icon.png"}
-                  className="w-8 h-8 rounded-full border"
-                  alt="avatar"
-                />
-                <span className="font-semibold">{user.displayName || "Compte"}</span>
+          <div className="flex items-center gap-4">
+            <Link href="/search" className="flex items-center gap-2 text-sm px-3 py-1 rounded hover:bg-gray-200">
+              <FaSearch /> <span className="hidden sm:inline">Search</span>
+            </Link>
+            {!user && (
+              <div className="hidden md:flex items-center gap-3 text-sm">
+                <Link href="/login" className="px-3 py-1 rounded hover:bg-gray-200">Login</Link>
+                <Link href="/register" className="px-3 py-1 rounded hover:opacity-90">Register</Link>
               </div>
+            )}
+            {user && (
+              <div className="relative">
+                <button
+                  onClick={() => setProfileOpen(p => !p)}
+                  className="flex items-center gap-2 rounded-full p-1 hover:bg-gray-200"
+                >
+                  <img src={user.photoURL || "/User-icon.png"} alt="avatar" className="w-9 h-9 rounded-full object-cover border" />
+                  <span className="hidden md:inline font-semibold">{user.displayName || "Compte"}</span>
+                </button>
+                {profileOpen && (
+                  <div className="absolute right-0 mt-2 w-48 bg-white rounded shadow-lg border z-50">
+                    <div className="px-3 py-2">
+                      <p className="font-semibold text-sm">{user.displayName || "Utilisateur"}</p>
+                      <p className="text-xs text-gray-500">{user.email}</p>
+                    </div>
+                    <hr />
+                    <Link href="/profile" className="block px-3 py-2 hover:bg-gray-100">Mon profil</Link>
+                    <button onClick={handleLogout} className="w-full text-left px-3 py-2 text-red-600 hover:bg-gray-100">Déconnexion</button>
+                  </div>
+                )}
+              </div>
+            )}
+            {!user && <img src="/default-user.jpg" alt="default" className="w-9 h-9 rounded-full object-cover border md:hidden" />}
+          </div>
+        </div>
+      </div>
 
-              {profileOpen && (
-                <div className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded p-3 border">
-                  <p className="font-semibold text-gray-700">{user.email}</p>
-                  <hr className="my-2" />
+      {/* Main navbar */}
+      <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
+        <img src="/logo.png" alt="logo" className="w-30" />
+        <nav className="hidden md:flex gap-12 text-sm font-semibold">
+          {menuItems.map(item => {
+            const isActive = pathname === item.href;
+            return (
+              <Link
+                key={item.name}
+                href={item.href}
+                className={`px-4 py-2 rounded border-2 transition-all duration-200
+                  ${isActive ? "bg-blue-100 border-blue-500" : "border-transparent hover:border-blue-500 hover:bg-blue-50"}`}
+              >
+                {item.name}
+              </Link>
+            );
+          })}
+        </nav>
+        <div className="md:hidden flex items-center gap-2">
+          <button onClick={() => setMobileMenuOpen(m => !m)} className="p-2 rounded bg-gray-100">
+            {mobileMenuOpen ? "✖" : "☰"}
+          </button>
+        </div>
+      </div>
 
-                  <Link
-                    href="/profile"
-                    className="block py-1 hover:bg-gray-100 rounded"
-                  >
-                    Mon profil
-                  </Link>
-
-                  <button
-                    onClick={handleLogout}
-                    className="w-full text-left py-1 text-red-600 hover:bg-gray-100 rounded"
-                  >
-                    Déconnexion
-                  </button>
-                </div>
+      {/* Mobile menu */}
+      {mobileMenuOpen && (
+        <div className="md:hidden bg-white border-t shadow-lg">
+          <div className="px-4 py-3">
+            <Link href="/search" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-2 px-3 py-2 rounded hover:bg-gray-100">
+              <FaSearch /> <span>Search</span>
+            </Link>
+            <nav className="flex flex-col gap-2 mt-3">
+              {menuItems.map(item => (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  onClick={() => { setActiveItem(item.name); setMobileMenuOpen(false); }}
+                  className="block w-full px-3 py-2 rounded border-2 border-transparent hover:border-blue-500 hover:bg-blue-50 transition-all duration-200"
+                >
+                  {item.name}
+                </Link>
+              ))}
+            </nav>
+            <div className="mt-4 border-t pt-3">
+              {!user ? (
+                <>
+                  <Link href="/login" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 rounded hover:bg-gray-100">Login</Link>
+                  <Link href="/register" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 mt-2 rounded bg-blue-600 text-white text-center">Register</Link>
+                </>
+              ) : (
+                <>
+                  <Link href="/profile" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 rounded hover:bg-gray-100">Mon profil</Link>
+                  <button onClick={() => { handleLogout(); setMobileMenuOpen(false); }} className="w-full text-left px-3 py-2 text-red-600">Déconnexion</button>
+                </>
               )}
             </div>
-          )}
-
+          </div>
         </div>
-      </div>
+      )}
 
-      {/* ▬▬▬▬ MENU PRINCIPAL ▬▬▬▬ */}
-      <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
-        <img src="/logo.png" className="w-40" />
-
-        <nav className="hidden md:flex gap-10 text-sm font-semibold text-gray-700">
-          {menuItems.map(item => (
-            <Link
-              key={item.name}
-              href={item.href}
-              onClick={() => setActiveItem(item.name)}
-              className={`px-5 py-2 rounded transition ${
-                activeItem === item.name
-                  ? "border-2 border-blue-700 bg-blue-100"
-                  : "hover:border-blue-700 hover:bg-blue-50"
-              }`}
-            >
-              {item.name}
-            </Link>
-          ))}
-        </nav>
-
-        <button
-          className="md:hidden p-2 bg-gray-200 rounded"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-        >
-          {mobileMenuOpen ? "✖" : "☰"}
-        </button>
-
-      </div>
     </header>
   );
 }
