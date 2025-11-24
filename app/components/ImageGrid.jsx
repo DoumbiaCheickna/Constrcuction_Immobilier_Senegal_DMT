@@ -217,7 +217,7 @@
 
 import { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
-import { db } from "../firebase/config"; // adapte le chemin
+import { db } from "../firebase/config";
 import Lightbox from "./Lightbox";
 
 // Données statiques
@@ -332,24 +332,18 @@ export default function ImageGrid({ filter }) {
   const [open, setOpen] = useState(false);
   const [idx, setIdx] = useState(0);
   const [properties, setProperties] = useState([]);
-
-  // Charger Firestore
   const loadFirestore = async () => {
     const snap = await getDocs(collection(db, "properties"));
     const firestore = snap.docs.map(doc => ({
       id: doc.id,
       ...doc.data(),
     }));
-
-    // Fusion Firestore + Statiques
     setProperties([...firestore, ...PROPERTIES_STATIC]);
   };
 
   useEffect(() => {
     loadFirestore();
   }, []);
-
-  // Filtrer
   const filtered = filter
     ? properties.filter((p) =>
         p.type.toLowerCase().includes(filter.toLowerCase()) ||
@@ -364,8 +358,6 @@ export default function ImageGrid({ filter }) {
           Nos réalisations
         </h2>
       </div>
-
-      {/* GRILLE */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {filtered.map((item, i) => (
           <article
@@ -389,24 +381,18 @@ export default function ImageGrid({ filter }) {
                 {item.type}
               </div>
             </div>
-
-            {/* Infos */}
             <div className="p-4">
               <h3 className="text-lg font-bold text-gray-900 truncate">
                 {item.quartier} — <span className="font-medium text-gray-600">{item.adresse}</span>
               </h3>
 
               <p className="mt-2 text-sm text-gray-500">{item.type}</p>
-
-              {/* Détails */}
               <div className="mt-4 grid grid-cols-2 gap-2 text-sm text-gray-700">
                 <span>🛋 {item.salon} Salon</span>
                 <span>🛏 {item.chambres} Chambres</span>
                 <span>🚿 {item.toilettes} Toilettes</span>
                 <span>🍽 {item.cuisine} Cuisine</span>
               </div>
-
-              {/* Contact */}
               <div className="mt-5 flex items-center justify-between">
                 <a
                   href={`https://wa.me/221338254340?text=${encodeURIComponent(
@@ -429,8 +415,6 @@ export default function ImageGrid({ filter }) {
           </article>
         ))}
       </div>
-
-      {/* LIGHTBOX */}
       <Lightbox
         properties={properties}
         open={open}

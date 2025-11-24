@@ -73,10 +73,8 @@
 // }
 
 "use client";
-
 import { useState } from "react";
 import { FaFacebookF, FaTwitter } from "react-icons/fa";
-
 export default function TopFixedBar() {
   const today = new Date();
   const [currentMonth, setCurrentMonth] = useState(today.getMonth());
