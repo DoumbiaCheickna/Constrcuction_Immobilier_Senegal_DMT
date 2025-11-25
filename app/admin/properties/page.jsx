@@ -1,154 +1,5 @@
-// "use client";
-// import { useEffect, useState } from "react";
-// import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from "firebase/firestore";
-// import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-// import { db, storage } from "../../firebase/config"; 
-// export default function PropertiesAdmin() {
-//   const [properties, setProperties] = useState([]);
-//   const [form, setForm] = useState({
-//     img: "",
-//     prix: "",
-//     quartier: "",
-//     type: "",
-//     adresse: "",
-//     salon: 0,
-//     chambres: 0,
-//     toilettes: 0,
-//     cuisine: 0,
-//     couleur: "bg-emerald-50",
-//   });
-//   const [editingId, setEditingId] = useState(null);
 
-//   const fetchProperties = async () => {
-//     const snapshot = await getDocs(collection(db, "properties"));
-//     setProperties(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
-//   };
-
-//   useEffect(() => { fetchProperties(); }, []);
-
-//   const handleChange = (e) => {
-//     const { name, value } = e.target;
-//     setForm(prev => ({ ...prev, [name]: value }));
-//   };
-
-//   const handleFileChange = async (e) => {
-//     const file = e.target.files[0];
-//     if (!file) return;
-//     const storageRef = ref(storage, `properties/${file.name}-${Date.now()}`);
-//     await uploadBytes(storageRef, file);
-//     const url = await getDownloadURL(storageRef);
-//     setForm(prev => ({ ...prev, img: url }));
-//   };
-
-//   const handleSubmit = async () => {
-//     if (editingId) {
-//       await updateDoc(doc(db, "properties", editingId), form);
-//       setEditingId(null);
-//     } else {
-//       await addDoc(collection(db, "properties"), form);
-//     }
-//     setForm({
-//       img: "",
-//       prix: "",
-//       quartier: "",
-//       type: "",
-//       adresse: "",
-//       salon: 0,
-//       chambres: 0,
-//       toilettes: 0,
-//       cuisine: 0,
-//       couleur: "bg-emerald-50",
-//     });
-//     fetchProperties();
-//   };
-
-//   const handleEdit = (item) => {
-//     setForm({ ...item });
-//     setEditingId(item.id);
-//   };
-
-//   const handleDelete = async (id) => {
-//     await deleteDoc(doc(db, "properties", id));
-//     fetchProperties();
-//   };
-
-//   return (
-//     <div className="p-6 max-w-7xl mx-auto">
-//       <h1 className="text-3xl font-bold mb-6">Administration des Biens Immobiliers</h1>
-
-//       <div className="bg-white p-6 rounded shadow mb-8 grid grid-cols-1 md:grid-cols-2 gap-4">
-//         <div>
-//           <label className="block font-semibold">Image</label>
-//           <input type="file" onChange={handleFileChange} className="border px-3 py-2 w-full rounded" />
-//           {form.img && <img src={form.img} alt="Preview" className="mt-2 w-40 h-32 object-cover rounded" />}
-//         </div>
-
-//         {/* Les autres champs restent les mêmes que précédemment */}
-//         <div>
-//           <label className="block font-semibold">Prix</label>
-//           <input name="prix" value={form.prix} onChange={handleChange} className="border px-3 py-2 w-full rounded" />
-//         </div>
-//         <div>
-//           <label className="block font-semibold">Quartier</label>
-//           <input name="quartier" value={form.quartier} onChange={handleChange} className="border px-3 py-2 w-full rounded" />
-//         </div>
-//         <div>
-//           <label className="block font-semibold">Type</label>
-//           <input name="type" value={form.type} onChange={handleChange} className="border px-3 py-2 w-full rounded" />
-//         </div>
-//         <div>
-//           <label className="block font-semibold">Adresse</label>
-//           <input name="adresse" value={form.adresse} onChange={handleChange} className="border px-3 py-2 w-full rounded" />
-//         </div>
-//         <div>
-//           <label className="block font-semibold">Salon</label>
-//           <input name="salon" type="number" value={form.salon} onChange={handleChange} className="border px-3 py-2 w-full rounded" />
-//         </div>
-//         <div>
-//           <label className="block font-semibold">Chambres</label>
-//           <input name="chambres" type="number" value={form.chambres} onChange={handleChange} className="border px-3 py-2 w-full rounded" />
-//         </div>
-//         <div>
-//           <label className="block font-semibold">Toilettes</label>
-//           <input name="toilettes" type="number" value={form.toilettes} onChange={handleChange} className="border px-3 py-2 w-full rounded" />
-//         </div>
-//         <div>
-//           <label className="block font-semibold">Cuisine</label>
-//           <input name="cuisine" type="number" value={form.cuisine} onChange={handleChange} className="border px-3 py-2 w-full rounded" />
-//         </div>
-//         <div>
-//           <label className="block font-semibold">Couleur CSS bg-*</label>
-//           <input name="couleur" value={form.couleur} onChange={handleChange} className="border px-3 py-2 w-full rounded" />
-//         </div>
-
-//         <div className="md:col-span-2">
-//           <button onClick={handleSubmit} className="bg-blue-700 text-white px-6 py-3 rounded w-full font-semibold">
-//             {editingId ? "Modifier la propriété" : "Ajouter une propriété"}
-//           </button>
-//         </div>
-//       </div>
-
-//       {/* Liste des propriétés */}
-//       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-//         {properties.map(item => (
-//           <div key={item.id} className={`bg-white p-4 rounded shadow ${item.couleur}`}>
-//             <img src={item.img} alt={item.type} className="w-full h-40 object-cover rounded mb-2" />
-//             <h3 className="font-bold text-lg">{item.type} - {item.quartier}</h3>
-//             <p className="text-sm">{item.adresse}</p>
-//             <p className="text-blue-700 font-bold">{item.prix}</p>
-//             <p className="text-sm">Salon: {item.salon} | Chambres: {item.chambres} | Toilettes: {item.toilettes} | Cuisine: {item.cuisine}</p>
-//             <div className="flex gap-2 mt-3">
-//               <button onClick={() => handleEdit(item)} className="bg-yellow-400 px-3 py-1 rounded w-1/2">Modifier</button>
-//               <button onClick={() => handleDelete(item.id)} className="bg-red-500 text-white px-3 py-1 rounded w-1/2">Supprimer</button>
-//             </div>
-//           </div>
-//         ))}
-//       </div>
-//     </div>
-//   );
-// }
 "use client";
-
 import { useState, useEffect } from "react";
 import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
@@ -156,8 +7,6 @@ import { db, storage } from "../../firebase/config";
 
 export default function PropertiesPage() {
   const [properties, setProperties] = useState([]);
-
-  // Champs du formulaire
   const [imgFile, setImgFile] = useState(null);
   const [prix, setPrix] = useState("");
   const [quartier, setQuartier] = useState("");
@@ -169,8 +18,6 @@ export default function PropertiesPage() {
   const [cuisine, setCuisine] = useState("");
 
   const [editingId, setEditingId] = useState(null);
-
-  // Récupération des biens
   const loadProperties = async () => {
     const snap = await getDocs(collection(db, "properties"));
     setProperties(snap.docs.map(d => ({ id: d.id, ...d.data() })));
