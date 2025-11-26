@@ -150,8 +150,8 @@ export default function Carousels() {
     "/pro1.jpeg","/pro2.jpeg","/pro3.jpeg","/pro4.jpeg","/pro5.jpeg","/pro6.jpeg",
     "/pro7.jpeg","/pro8.jpeg","/pro9.jpeg","/pro10.jpeg","/pro11.jpeg","/pro12.jpeg",
     "/pro13.jpeg","/pro14.jpeg","/pro15.jpeg","/pro16.jpeg","/pro17.jpeg","/pro18.jpeg",
-    "/pro19.jpeg","/pro20.jpeg","/pro21.jpeg","/pro22.jpeg","/pro23.jpeg","/pro24.jpeg",
-    "/pro25.jpeg","/pro26.jpeg","/pro27.jpeg","/pro28.jpeg","/pro29.jpeg","/pro30.jpeg",
+    "/pro19.jpeg","/pro20.jpeg","/pro21.jpeg","/pro22.jpeg","/pro23.jpeg",
+    "/pro25.jpeg","/pro29.jpeg","/pro30.jpeg",
     "/pro31.jpeg","/pro32.jpeg",
   ];
 

@@ -391,7 +391,7 @@ export default function Navbar() {
       </div>
 
       {/* Middle info bar */}
-      <div className="bg-[#E8E6E6] border-b border-gray-100">
+      <div className="bg-[#E8E6E6] border-b border-gray-80">
         <div className="max-w-7xl mx-auto px-4 py-2 flex flex-wrap md:flex-nowrap items-center justify-between gap-4">
           <div className="flex items-center gap-2 text-sm text-gray-700">
             <span className="font-semibold">Horaires :</span>
