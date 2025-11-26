@@ -286,19 +286,11 @@ export default function Navbar() {
 
   return (
     <header className="w-full sticky top-0 z-50 bg-white shadow-lg">
-
-      {/* Top bar desktop */}
       <div className="hidden md:block bg-[#143F6B] text-white py-2">
         <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
           <p className="text-sm font-light">
             ⭐ Trouvez votre futur appartement, villa ou studio, service professionnel et rapide.
           </p>
-          {/* <div className="flex items-center gap-3">
-            <FaFacebookF />
-            <FaTwitter />
-            <FaLinkedin />
-            <FaWhatsapp />
-          </div> */}
           <div className="flex items-center gap-3">
   <a href="https://facebook.com/tonCompte" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition">
     <FaFacebookF />
@@ -316,19 +308,13 @@ export default function Navbar() {
 
         </div>
       </div>
-
-      {/* Calendar section */}
-      <div className="w-full bg-white border-b border-gray-200">
+      <div className="w-full bg-white border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 py-2 flex flex-wrap md:flex-nowrap items-center justify-between gap-4">
-          
-          {/* Date */}
           <div className="flex-shrink-0 text-center px-4 py-2 rounded-xl bg-white border border-gray-200 shadow-sm">
             <div className="text-lg font-bold">{today.getDate()}</div>
             <div className="text-xs text-gray-600 -mt-1">{monthNames[today.getMonth()]}</div>
             <div className="text-xs text-gray-500">{today.getFullYear()}</div>
           </div>
-
-          {/* Days grid */}
           <div className="flex gap-2 overflow-x-auto flex-1">
             {Array.from({ length: daysInMonth }, (_, i) => i + 1).map(day => (
               <div
@@ -341,8 +327,6 @@ export default function Navbar() {
               </div>
             ))}
           </div>
-
-          {/* Month navigation */}
           <div className="flex items-center gap-4">
             <div className="text-sm text-gray-200">{monthNames[(currentMonth - 1 + 12) % 12]}</div>
             <button
@@ -364,14 +348,6 @@ export default function Navbar() {
             </button>
             <div className="text-sm text-gray-400">{monthNames[(currentMonth + 1) % 12]}</div>
           </div>
-
-          {/* Social icons */}
-          {/* <div className="grid grid-cols-2 gap-2">
-            <a href="#" className="flex items-center justify-center w-10 h-10 rounded-full bg-blue-600 text-white hover:opacity-90 transition"><FaTwitter /></a>
-            <a href="#" className="flex items-center justify-center w-10 h-10 rounded-full bg-pink-500 text-white hover:opacity-90 transition"><FaInstagram /></a>
-            <a href="" className="flex items-center justify-center w-10 h-10 rounded-full bg-red-500 text-white hover:opacity-90 transition"><FaGoogle /></a>
-            <a href="#" className="flex items-center justify-center w-10 h-10 rounded-full bg-black text-white hover:opacity-90 transition"><FaTiktok /></a>
-          </div> */}
           <div className="grid grid-cols-2 gap-2">
   <a href="https://twitter.com/tonCompte" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-5 h-5 rounded-full bg-blue-600 text-white hover:opacity-90 transition">
     <FaTwitter />
