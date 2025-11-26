@@ -340,16 +340,51 @@ export default function ImageGrid({ filter }) {
     }));
     setProperties([...firestore, ...PROPERTIES_STATIC]);
   };
-
+  console.log("Filter ",filter)
   useEffect(() => {
     loadFirestore();
   }, []);
   const filtered = filter
-    ? properties.filter((p) =>
-        p.type.toLowerCase().includes(filter.toLowerCase()) ||
-        p.quartier.toLowerCase().includes(filter.toLowerCase())
-      )
-    : properties;
+  ? properties.filter((p) => {
+      const type = p.type.toLowerCase();
+      const quartier = p.quartier.toLowerCase();
+      const f = filter.toLowerCase();
+
+      // Si le filtre est "appartement", inclure aussi TOUTES les villas
+      if (f === "appartement") {
+        return (
+          type.includes("appartement") ||
+          type.includes("villa") // prend Villa, Villa Haut Standing, Villa Bord de Mer, etc.
+        );
+      }
+
+      // Filtrage classique sinon
+      return type.includes(f) || quartier.includes(f);
+    })
+  : properties;
+
+  // const filtered = filter
+  // ? properties.filter((p) => {
+  //     const type = p.type.toLowerCase();
+  //     const quartier = p.quartier.toLowerCase();
+  //     const f = filter.toLowerCase();
+
+  //     // Si le filtre est "appartement", inclure aussi les villas
+  //     if (f === "appartement") {
+  //       return type.includes("appartement") || type.includes("villa");
+  //     }
+
+  //     // Sinon filtrer normalement par type ou quartier
+  //     return type.includes(f) || quartier.includes(f);
+  //   })
+  // : properties;
+
+  // const filtered = filter
+  //   ? properties.filter((p) =>
+  //       p.type.toLowerCase().includes(filter.toLowerCase()) ||
+  //       p.quartier.toLowerCase().includes(filter.toLowerCase())
+  //     )
+  //   : properties;
 
   return (
     <section className="max-w-7xl mx-auto px-6 py-16">
