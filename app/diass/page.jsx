@@ -232,6 +232,7 @@ import ImageGrid from "../components/ImageGrid";
 import Navbar from "../components/Navbar";
 import Image from "next/image";
 import WhatsAppButton from '../components/WhatsAppButton';
+import Carousels from "../components/Carousels";
 export default function DiassPage() {
   return (
     <>
@@ -239,7 +240,7 @@ export default function DiassPage() {
 
       <main className="max-w-7xl mx-auto px-6 py-16">
         <h1 className="text-3xl font-bold mb-8">Biens à Diass</h1>
-
+       <Carousels />
         <ImageGrid filter="diass" />
 
         <div className="min-h-screen bg-gray-50 text-gray-800">
