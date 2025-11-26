@@ -2,11 +2,17 @@ import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import WhatsAppButton from '../components/WhatsAppButton';
 export const metadata = {
-  title: "Notre Équipe Immobilière | DaboImmo",
-  description: "Découvrez l’équipe professionnelle qui accompagne nos clients dans tous leurs projets immobiliers.",
+  title: "Notre Équipe Immobilière",
+  description: "DMTC Construction avance avec une seule priorité : la qualité du travail. Chaque projet représente pour nous une responsabilité et une promesse envers nos clients.Je remercie tous ceux qui nous accompagnent dans cette vision. Ensemble, construisons solide, durable et avec confiance.",
 };
 export default function EquipePage() {
     const team = [
+    {
+      name: "Tidjane Diawara",
+      role: "Le Président Directeur Général de DMTC Construction",
+      desc: "Visionnaire et déterminé, il dirige DMTC Construction avec rigueur, en plaçant la qualité, la confiance et le respect des délais au centre de chaque projet. Son leadership dynamique fait de l’entreprise un acteur fiable et performant du secteur BTP.",
+      img: "/photo_convertie.png",
+    },
     {
       name: "Awa Ndiaye",
       role: "Conseillère Immobilier",
@@ -43,8 +49,7 @@ export default function EquipePage() {
           Notre Équipe Immobilière
         </h1>
         <p className="text-gray-600 mt-4 text-lg leading-relaxed">
-          Derrière chaque projet immobilier réussi, il y a une équipe passionnée, 
-          disponible et engagée. Chez <span className="font-semibold">DaboImmo</span>,
+         DMTC Construction avance avec une seule priorité : la qualité du travail. Chaque projet représente pour nous une responsabilité et une promesse envers nos clients.Je remercie tous ceux qui nous accompagnent dans cette vision. Ensemble, construisons solide, durable et avec confiance. <span className="font-semibold">DMTC</span>,
           nous mettons en avant un service professionnel fondé sur l’écoute,
           la transparence et l’expertise.
         </p>
