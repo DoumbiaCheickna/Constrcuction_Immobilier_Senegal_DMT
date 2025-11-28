@@ -95,16 +95,16 @@ export default function ContactPage() {
     {
       icon: FaEnvelope,
       title: "Email Professionnel",
-      details: "contact@dmtconstruction.sn",
+      details: "tidjane.diawara@dmtc-sn.com",
       subtitle: "Réponse sous 24h ouvrées",
       color: "from-purple-500 to-pink-500",
-      link: "mailto:contact@dmtconstruction.sn?subject=Demande d'information&body=Bonjour, je suis intéressé par vos services...",
+      link: "mailto:tidjane.diawara@dmtc-sn.com?subject=Demande d'information&body=Bonjour, je suis intéressé par vos services...",
       badge: "Professionnel"
     },
     {
       icon: FaMapMarkerAlt,
       title: "Siège Social",
-      details: "Amitié 2 Immeuble SILÈNE",
+      details: "Villa 306, Almadies,Dakar Senegal",
       subtitle: "Dakar, Sénégal • Parking disponible",
       color: "from-orange-500 to-red-500",
       link: "https://maps.google.com/?q=Amitié+2+Immeuble+SILÈNE+Dakar+Senegal",
@@ -189,7 +189,7 @@ export default function ContactPage() {
       name: "M. DIAWARA Tidjane",
       role: "Directeur Général",
       phone: "+221 33 869 15 45",
-      email: "t.diawara@dmtconstruction.sn",
+      email: "tidjane.diawara@dmtc-sn.com",
       specialty: "Direction Stratégique & Partenariats",
       availability: "📍 Sur rendez-vous",
       image: "/Dg.png"
@@ -674,7 +674,7 @@ export default function ContactPage() {
                 <div className="flex items-start gap-3">
                   <FaMapMarkerAlt className="text-blue-600 text-xl mt-1" />
                   <div>
-                    <p className="font-semibold text-gray-800">Amitié 2 Immeuble SILÈNE</p>
+                    <p className="font-semibold text-gray-800">Villa 306, Almadies,Dakar Senegal</p>
                     <p className="text-gray-600">Dakar, Sénégal</p>
                     <p className="text-sm text-green-600 mt-1">✅ Parking sécurisé disponible</p>
                   </div>

@@ -472,7 +472,7 @@ export default function Footer() {
                     href="mailto:contact@dmtconstruction.sn" 
                     className="text-gray-300 hover:text-white transition-colors duration-300 break-all"
                   >
-                    contact@dmtconstruction.sn
+                    tidjane.diawara@dmtc-sn.com
                   </a>
                   <p className="text-sm text-purple-300">Réponse sous 24h</p>
                 </div>
@@ -485,7 +485,7 @@ export default function Footer() {
                 </div>
                 <div>
                   <p className="font-semibold">Adresse</p>
-                  <p className="text-gray-300">Amitié 2 Immeuble SILÈNE</p>
+                  <p className="text-gray-300">Villa 306, Almadies,Dakar Senegal</p>
                   <p className="text-sm text-orange-300">Dakar, Sénégal</p>
                 </div>
               </div>
