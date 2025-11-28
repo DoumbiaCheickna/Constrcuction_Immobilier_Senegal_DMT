@@ -54,7 +54,7 @@ const Footer = () => {
               title="Carte de Dakar, Sénégal"
             />
             <div className="map-info">
-              <p>📍 Dakar, Sénégal</p>
+              <p>📍 Amitié 2 Immeuble SILÈNE - Dakar, Sénégal</p>
               <p>📞 +221 77 443 57 52</p>
               <p>✉️ cheicknadevdot@gmail.com</p>
             </div>

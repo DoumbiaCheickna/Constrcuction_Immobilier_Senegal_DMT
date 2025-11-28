@@ -147,20 +147,18 @@ import Image from "next/image";
 
 export default function Carousels() {
   const images = [
-    "/pro1.jpeg","/pro2.jpeg","/pro3.jpeg","/pro4.jpeg","/pro5.jpeg","/pro6.jpeg",
-    "/pro7.jpeg","/pro8.jpeg","/pro9.jpeg","/pro10.jpeg","/pro11.jpeg","/pro12.jpeg",
-    "/pro13.jpeg","/pro14.jpeg","/pro15.jpeg","/pro16.jpeg","/pro17.jpeg","/pro18.jpeg",
-    "/pro19.jpeg","/pro20.jpeg","/pro21.jpeg","/pro22.jpeg","/pro23.jpeg",
-    "/pro25.jpeg","/pro29.jpeg","/pro30.jpeg",
-    "/pro31.jpeg","/pro32.jpeg",
+    "/pro1.png","/pro2.png","/pro3.png","/pro4.png","/pro5.png","/pro6.png",
+    "/pro7.png","/pro8.png","/pro9.png","/pro10.png","/pro11.png","/pro12.png",
+    "/pro13.png","/pro14.png","/pro15.png","/pro16.png","/pro17.png","/pro18.png",
+    "/pro19.png","/pro20.png","/pro21.png","/pro22.png","/pro23.png",
+    "/pro25.png","/pro29.png","/pro30.png",
+    "/pro31.png","/pro32.png",
   ];
 
   const [index, setIndex] = useState(0);
 
   const next = () => setIndex((prev) => (prev + 1) % images.length);
   const prev = () => setIndex((prev) => (prev - 1 + images.length) % images.length);
-
-  // Auto scroll 30 secondes
   useEffect(() => {
     const timer = setInterval(next, 10000);
     return () => clearInterval(timer);
@@ -168,25 +166,12 @@ export default function Carousels() {
 
   return (
     <div className="relative w-full h-[260px] md:h-[380px] overflow-hidden rounded-xl mb-10">
-
-      {/* IMAGE */}
       <Image
         src={images[index]}
         alt="carousel"
         fill
         className="object-cover brightness-75 transition-all duration-500"
       />
-
-      {/* TEXTE CENTRE SUR L’IMAGE */}
-      {/* <div className="absolute inset-10 flex flex-col justify-center items-center text-center px-4">
-        <h2 className="text-white text-xl md:text-4xl font-extrabold drop-shadow-xl">
-          DMTC Construction – Excellence & Qualité
-        </h2>
-        <p className="text-gray-200 text-sm md:text-lg mt-2 max-w-2xl drop-shadow-lg">
-          Découvrez nos réalisations modernes et notre savoir-faire professionnel.
-        </p>
-      </div> */}
-      {/* TEXTE CENTRÉ EN BAS */}
 <div className="absolute inset-0 flex flex-col justify-end items-center text-center px-4 mb-10">
   <h2 className="text-white text-xl md:text-4xl font-extrabold drop-shadow-xl">
     DMTC Construction – Excellence & Qualité

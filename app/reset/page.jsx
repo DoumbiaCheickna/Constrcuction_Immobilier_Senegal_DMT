@@ -1,24 +1,17 @@
 "use client";
-
 import { useState } from "react";
 import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 import { auth } from "../firebase/config";
-
-
 export default function ResetPasswordPage() {
- 
-
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-
   const handleReset = async (e) => {
     e.preventDefault();
     setError("");
     setMessage("");
     setLoading(true);
-
     try {
       await sendPasswordResetEmail(auth, email);
       setMessage("Un lien de réinitialisation vous a été envoyé par email.");
@@ -36,7 +29,6 @@ export default function ResetPasswordPage() {
 
     setLoading(false);
   };
-
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 p-6">
       <div className="w-full max-w-md bg-white shadow-md rounded-xl p-6">
@@ -45,15 +37,11 @@ export default function ResetPasswordPage() {
         <p className="text-gray-600 text-center mt-2">
           Entrez votre email pour recevoir un lien de réinitialisation.
         </p>
-
-        {/* Message succès */}
         {message && (
           <div className="mt-4 p-3 bg-green-100 text-green-800 rounded-lg">
             {message}
           </div>
         )}
-
-        {/* Message erreur */}
         {error && (
           <div className="mt-4 p-3 bg-red-100 text-red-800 rounded-lg">
             {error}

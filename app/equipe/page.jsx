@@ -1,3 +1,4 @@
+import DMTPresentation from "../components/DMTPresentation";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import WhatsAppButton from '../components/WhatsAppButton';
@@ -17,25 +18,25 @@ export default function EquipePage() {
       name: "Awa Ndiaye",
       role: "Conseillère Immobilier",
       desc: "Spécialiste en vente et location, elle accompagne les clients dans la recherche de biens adaptés à leurs besoins.",
-      img: "/personne5.jpg",
+      img: "/personne5.png",
     },
     {
       name: "Mamadou Diop",
       role: "Expert en Gestion Locative",
       desc: "Il gère la relation entre propriétaires et locataires, garantissant une expérience fluide et professionnelle.",
-      img: "/personne7.jpg",
+      img: "/personne7.png",
     },
     {
       name: "Fatou Sy",
       role: "Chargée de Marketing Immobilier",
       desc: "Responsable de la visibilité des biens, elle utilise des stratégies digitales modernes pour maximiser leur impact.",
-      img: "/personne4.jpg",
+      img: "/personne4.png",
     },
     {
       name: "Cheikh Kane",
       role: "Responsable Visites & Terrain",
       desc: "Expert du terrain, il organise les visites, fait les évaluations et assure le suivi de chaque client.",
-      img: "/personne6.jpg",
+      img: "/personne6.png",
     },
   ];
   return (
@@ -54,8 +55,7 @@ export default function EquipePage() {
           la transparence et l’expertise.
         </p>
       </div>
-
-      {/* Team Section */}
+      <DMTPresentation />
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-10">
         {team.map((person, index) => (
           <div
