@@ -185,7 +185,7 @@ export default function DiassPage() {
           <div className="grid md:grid-cols-3 gap-8">
             {[
               { title: "Résidentiel", desc: "Villas, appartements, studios", img: "/page_9.png" },
-              { title: "Commercial", desc: "Bureaux, boutiques, entrepôts", img: "/pro11.png" },
+              { title: "Commercial", desc: "Immoble", img: "/pro11.png" },
               { title: "Terrains", desc: "Terrains constructibles ou agricoles", img: "/pagees_1.png" },
             ].map((item, i) => (
               <motion.div

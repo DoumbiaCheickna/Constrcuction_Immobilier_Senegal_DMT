@@ -1386,6 +1386,7 @@ export default function Navbar() {
         { name: "VILLAS & APPARTEMENTS", href: "/villas" },
         { name: "TERRAINS", href: "/terrassement" },
         { name: "CONSTRUCTIONS", href: "/construction" },
+        { name: "NOS REALISATION", href: "/realisation" },
       ],
     },
     { name: "NOTRE ÉQUIPE", href: "/equipe" },
@@ -1499,7 +1500,7 @@ export default function Navbar() {
             </Link>
 
             {/* Auth */}
-            {!user ? (
+            {/* {!user ? (
               <div className="hidden md:flex items-center gap-2">
                 <Link href="/login" className="px-3 py-1.5 rounded-lg text-gray-700 hover:bg-blue-50">Connexion</Link>
                 <Link href="/register" className="px-3 py-1.5 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow">S'inscrire</Link>
@@ -1522,7 +1523,7 @@ export default function Navbar() {
                   </div>
                 )}
               </div>
-            )}
+            )} */}
 
             {/* Mobile */}            
             <button 

@@ -13,11 +13,11 @@ const PROPERTIES_STATIC = [
     quartier: "Keur Massar",
     type: "Villas",
     description:
-      "Un programme résidentiel moderne situé à Keur Massar, offrant un cadre calme et sécurisé, idéal pour les familles.",
+      "Un programme résidentiel moderne, offrant un cadre calme et sécurisé, idéal pour les familles.",
     superficie: "200 m²",
     etages: "R+1",
     chambres: 3,
-    tags: ["Villas", "Moderne"],
+    tags: ["Villas", " Moderne"],
     badge: "DISPONIBLE",
     badgeColor: "bg-green-600",
   },
@@ -29,11 +29,11 @@ const PROPERTIES_STATIC = [
     quartier: "Point E",
     type: "Appartements",
     description:
-      "Un immeuble haut standing avec ascenseur, parking sous-terrain et finition premium au cœur du Point E.",
+      "Un immeuble haut standing avec ascenseur, parking sous-terrain et finition premium.",
     superficie: "720 m²",
-    etages: "R+15",
+    etages: "R+1",
     chambres: 4,
-    tags: ["Appartements", "Haut Standing"],
+    tags: ["Appartements", " Haut Standing"],
     badge: "NOUVEAU",
     badgeColor: "bg-purple-600",
   },
@@ -45,11 +45,11 @@ const PROPERTIES_STATIC = [
     quartier: "Diamniadio",
     type: "Villas",
     description:
-      "Une villa contemporaine située dans la nouvelle ville de Diamniadio, proche des commodités et axes principaux.",
+      "Une villa contemporaine, proche des commodités et axes principaux.",
     superficie: "320 m²",
     etages: "R+1",
     chambres: 4,
-    tags: ["Villas", "Moderne"],
+    tags: ["Villas", " Moderne"],
     badge: "PROMO",
     badgeColor: "bg-yellow-500",
   },
@@ -61,11 +61,11 @@ const PROPERTIES_STATIC = [
     quartier: "Ouakam",
     type: "Appartements",
     description:
-      "Située dans un quartier calme près des Mamelles, cette résidence offre une atmosphère conviviale et sécurisée.",
+      "Située dans un quartier calme, cette résidence offre une atmosphère conviviale et sécurisée.",
     superficie: "480 m²",
-    etages: "R+8",
+    etages: "R+1",
     chambres: 3,
-    tags: ["Appartements", "Famille"],
+    tags: ["Appartements", " Famille"],
     badge: "NOUVEAU",
     badgeColor: "bg-red-500",
   },
@@ -79,9 +79,9 @@ const PROPERTIES_STATIC = [
     description:
       "Villa accessible avec un excellent rapport qualité-prix, parfaite pour un premier investissement immobilier.",
     superficie: "140 m²",
-    etages: "R",
+    etages: "R+1",
     chambres: 2,
-    tags: ["Villas", "Économique"],
+    tags: ["Villas", " Économique"],
     badge: "DISPONIBLE",
     badgeColor: "bg-green-600",
   },
@@ -95,9 +95,9 @@ const PROPERTIES_STATIC = [
     description:
       "Résidence neuve avec ascenseur, système de vidéosurveillance et matériaux de finition haut de gamme.",
     superficie: "550 m²",
-    etages: "R+10",
+    etages: "R+1",
     chambres: 3,
-    tags: ["Appartements", "Sécurité"],
+    tags: ["Appartements", " Sécurité"],
     badge: "LANCEMENT",
     badgeColor: "bg-blue-600",
   },
@@ -109,11 +109,11 @@ const PROPERTIES_STATIC = [
     quartier: "Lac Rose",
     type: "Villas",
     description:
-      "Un lotissement résidentiel à quelques minutes du Lac Rose, offrant un environnement naturel et paisible.",
+      "Un lotissement résidentiel, offrant un environnement naturel et paisible.",
     superficie: "260 m²",
     etages: "R+1",
     chambres: 3,
-    tags: ["Villas", "Résidentiel"],
+    tags: ["Villas", " Résidentiel"],
     badge: "COUP DE CŒUR",
     badgeColor: "bg-pink-600",
   },
@@ -129,7 +129,7 @@ const PROPERTIES_STATIC = [
     superficie: "410 m²",
     etages: "R+1",
     chambres: 4,
-    tags: ["Villas", "Luxe"],
+    tags: ["Villas", " Luxe"],
     badge: "PRESTIGE",
     badgeColor: "bg-indigo-700",
   },
@@ -143,9 +143,9 @@ const PROPERTIES_STATIC = [
     description:
       "Résidence moderne pour jeunes actifs, bien située et proche de tous les services essentiels.",
     superficie: "310 m²",
-    etages: "R+5",
+    etages: "R+1",
     chambres: 2,
-    tags: ["Appartements", "Moderne"],
+    tags: ["Appartements", " Moderne"],
     badge: "DISPONIBLE",
     badgeColor: "bg-green-600",
   }
@@ -361,7 +361,7 @@ export default function ImageGrid({ filter }) {
     : properties;
 
   return (
-    <section className="max-w-7xl mx-auto px-6 py-16">
+    <section className="max-w-10xl mx-auto px-3 py-5">
       <div className="flex items-center justify-between mb-8">
         <h2 className="text-2xl md:text-3xl font-extrabold text-gray-900">
           Nos programmes
@@ -385,9 +385,9 @@ export default function ImageGrid({ filter }) {
               
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               
-              <div className={`absolute top-4 left-4 px-3 py-1 rounded-full text-white text-xs font-bold ${item.badgeColor} shadow-lg`}>
+              {/* <div className={`absolute top-4 left-4 px-3 py-1 rounded-full text-white text-xs font-bold ${item.badgeColor} shadow-lg`}>
                 {item.badge}
-              </div>
+              </div> */}
 
               <div className="absolute bottom-4 left-4 right-4">
                 <div className="flex flex-wrap gap-2">
@@ -408,7 +408,10 @@ export default function ImageGrid({ filter }) {
             </div>
             <div className="p-6">
               <div className="mb-4">
-                <h3 className="text-xl font-bold text-gray-900 mb-2">
+                 <p className="text-lg font-bold text-purple-600">
+                  {item.tags}
+                </p>
+                {/* <h3 className="text-xl font-bold text-gray-900 mb-2">
                   {item.titre}
                 </h3>
                 <p className="text-lg font-bold text-purple-600">
@@ -416,7 +419,7 @@ export default function ImageGrid({ filter }) {
                 </p>
                 <p className="text-sm text-gray-500 mt-1">
                   {item.quartier}
-                </p>
+                </p> */}
               </div>
               <p className="text-gray-600 text-sm leading-relaxed mb-6 line-clamp-2">
                 {item.description}
