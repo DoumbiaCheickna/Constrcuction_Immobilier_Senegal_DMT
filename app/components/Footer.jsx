@@ -276,7 +276,7 @@ export default function Footer() {
 
   const quickLinks = [
     { name: "Accueil", href: "/" },
-    { name: "Nos Réalisations", href: "/realisations" },
+    { name: "Nos Réalisations", href: "/construction" },
     { name: "Villas & Appartements", href: "/villas" },
     { name: "Terrassement", href: "/terrassement" },
     { name: "Notre Équipe", href: "/equipe" },
@@ -285,11 +285,11 @@ export default function Footer() {
 
   const services = [
     { name: "Construction de Villas", href: "/services/villas" },
-    { name: "Logements Sociaux", href: "/services/logements-sociaux" },
-    { name: "Terrassement", href: "/services/terrassement" },
-    { name: "Bassins de Rétention", href: "/services/bassins" },
-    { name: "Infrastructures Publiques", href: "/services/infrastructures" },
-    { name: "Études Techniques", href: "/services/etudes" }
+    { name: "Logements Sociaux", href: "/contact" },
+    { name: "Terrassement", href: "/terrassement" },
+    { name: "Bassins de Rétention", href: "/construction" },
+    { name: "Infrastructures Publiques", href: "/construction" },
+    { name: "Études Techniques", href: "/terrassement" }
   ];
 
   const legalLinks = [
