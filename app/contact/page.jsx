@@ -190,7 +190,7 @@ export default function ContactPage() {
       email: "t.diawara@dmtconstruction.sn",
       specialty: "Direction Stratégique & Partenariats",
       availability: "📍 Sur rendez-vous",
-      image: "/team/directeur.jpg"
+      image: "/Dg.png"
     },
     {
       name: "Département Commercial",
@@ -199,7 +199,7 @@ export default function ContactPage() {
       email: "commercial@dmtconstruction.sn",
       specialty: "Devis & Études de Projets",
       availability: "🕒 Lun-Ven 8h-17h",
-      image: "/team/commercial.jpg"
+      image: "/personne7.png"
     },
     {
       name: "Département Technique",
@@ -208,7 +208,7 @@ export default function ContactPage() {
       email: "technique@dmtconstruction.sn",
       specialty: "Expertise Technique & Suivi Chantier",
       availability: "🔧 Disponible sur site",
-      image: "/team/technique.jpg"
+      image: "/soutien-technique.png"
     }
   ];
 
