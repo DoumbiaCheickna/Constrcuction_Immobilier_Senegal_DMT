@@ -147,12 +147,8 @@ import Image from "next/image";
 
 export default function Carousels() {
   const images = [
-    "/pro1.png","/pro2.png","/pro3.png","/pro4.png","/pro5.png","/pro6.png",
-    "/pro7.png","/pro8.png","/pro9.png","/pro10.png","/pro11.png","/pro12.png",
-    "/pro13.png","/pro14.png","/pro15.png","/pro16.png","/pro17.png","/pro18.png",
-    "/pro19.png","/pro20.png","/pro21.png","/pro22.png","/pro23.png",
-    "/pro25.png","/pro29.png","/pro30.png",
-    "/pro31.png","/pro32.png",
+    "/what_1.png","/what_2.png","/what_3.png","/what_4.png","/what_5.png","/what_6.png",
+    "/what_7.png"
   ];
 
   const [index, setIndex] = useState(0);

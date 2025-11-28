@@ -1100,9 +1100,235 @@
 //   );
 // }
 
+// "use client";
+// import Link from "next/link";
+// import { useState, useEffect } from "react";
+// import { 
+//   FaFacebookF, FaTwitter, FaLinkedin, FaWhatsapp, FaSearch, 
+//   FaUser, FaSignOutAlt, FaCaretDown 
+// } from "react-icons/fa";
+// import { auth } from "../firebase/config";
+// import { onAuthStateChanged, signOut } from "firebase/auth";
+// import { usePathname } from "next/navigation";
+
+// export default function Navbar() {
+//   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+//   const [dropdownOpen, setDropdownOpen] = useState(false);
+//   const [user, setUser] = useState(null);
+//   const [profileOpen, setProfileOpen] = useState(false);
+//   const [scrolled, setScrolled] = useState(false);
+
+//   useEffect(() => {
+//     const unsub = onAuthStateChanged(auth, (currentUser) => setUser(currentUser));
+//     return () => unsub();
+//   }, []);
+
+//   useEffect(() => {
+//     const handleScroll = () => setScrolled(window.scrollY > 20);
+//     window.addEventListener("scroll", handleScroll);
+//     return () => window.removeEventListener("scroll", handleScroll);
+//   }, []);
+
+//   const pathname = usePathname();
+
+//   const handleLogout = async () => {
+//     await signOut(auth);
+//     setProfileOpen(false);
+//   };
+
+//   // MENU + DROPDOWN
+//   const menuItems = [
+//     { name: "ACCUEIL", href: "/" },
+
+//     {
+//       name: "NOS ACTIVITÉS",
+//       dropdown: true,
+//       children: [
+//         { name: "NOUROUDINE", href: "/diass" },
+//         { name: "VILLAS & APPARTEMENTS", href: "/villas" },
+//         { name: "TERRAINS", href: "/terrassement" },
+//         { name: "CONSTRUCTIONS", href: "/construction" },
+//       ],
+//     },
+
+//     { name: "NOTRE ÉQUIPE", href: "/equipe" },
+//     { name: "CONTACTS", href: "/contact" },
+//   ];
+
+//   const socialLinks = [
+//     { icon: FaFacebookF, href: "https://facebook.com", color: "bg-blue-600 hover:bg-blue-700" },
+//     { icon: FaTwitter, href: "https://twitter.com", color: "bg-sky-500 hover:bg-sky-600" },
+//     { icon: FaLinkedin, href: "https://linkedin.com", color: "bg-blue-700 hover:bg-blue-800" },
+//     { icon: FaWhatsapp, href: "https://wa.me", color: "bg-green-500 hover:bg-green-600" },
+//   ];
+
+//   return (
+//     <header className={`w-full sticky top-0 z-50 transition-all duration-300 ${
+//       scrolled ? "bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-200"
+//                : "bg-white border-b border-gray-100"
+//     }`}>
+
+//       {/* Bandeau défilant */}
+//       <div className="hidden md:block bg-[#143F6B] text-white py-2 overflow-hidden">
+//         <div className="max-w-7xl mx-auto px-4">
+//           <div className="whitespace-nowrap animate-marquee text-sm font-light">
+//             ⭐ Trouvez votre futur appartement, villa ou studio, service professionnel et rapide.
+//           </div>
+//         </div>
+//       </div>
+//       <div className="border-b border-gray-200">
+//         <div className="max-w-7xl mx-auto px-4 py-2 flex items-center justify-between">
+//           <img 
+//             src="/logo.png" 
+//             alt="DMT Construction" 
+//             className="h-10 w-auto hover:scale-105 transition-transform cursor-pointer"
+//           />
+//           <nav className="hidden lg:flex items-center gap-1">
+
+//             {menuItems.map((item) => {
+
+//               // DROPDOWN
+//               if (item.dropdown) {
+//                 return (
+//                   <div
+//                     key={item.name}
+//                     className="relative group"
+//                     onMouseEnter={() => setDropdownOpen(true)}
+//                     onMouseLeave={() => setDropdownOpen(false)}
+//                   >
+//                     <button
+//                       className="px-4 py-2 rounded-xl font-semibold text-sm text-gray-700 
+//                                  hover:text-blue-700 hover:bg-blue-50 transition-all flex items-center gap-1"
+//                     >
+//                       {item.name}
+//                       <FaCaretDown className={`transition-transform duration-300 ${dropdownOpen ? "rotate-180" : ""}`} />
+//                     </button>
+
+//                     {/* LISTE DÉROULANTE */}
+//                     {dropdownOpen && (
+//                       <div className="absolute left-0 mt-2 w-52 bg-white rounded-xl shadow-lg border border-gray-200 animate-fade-down z-50">
+//                         {item.children.map((sub) => (
+//                           <Link
+//                             key={sub.name}
+//                             href={sub.href}
+//                             className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition"
+//                           >
+//                             {sub.name}
+//                           </Link>
+//                         ))}
+//                       </div>
+//                     )}
+//                   </div>
+//                 );
+//               }
+
+//               // ITEMS SIMPLES
+//               const isActive = pathname === item.href;
+//               return (
+//                 <Link
+//                   key={item.name}
+//                   href={item.href}
+//                   className={`relative px-4 py-2 rounded-xl font-semibold text-sm transition-all 
+//                   ${isActive ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg"
+//                              : "text-gray-700 hover:text-blue-700 hover:bg-blue-50"}`}
+//                 >
+//                   {item.name}
+//                 </Link>
+//               );
+//             })}
+//           </nav>
+
+//           {/* DROITE */}
+//           <div className="flex items-center gap-3">
+
+//             {/* Social Desktop */}
+//             <div className="hidden md:flex items-center gap-2">
+//               {socialLinks.map((s, i) => (
+//                 <a key={i} href={s.href} target="_blank" className={`w-7 h-7 ${s.color} rounded-lg flex items-center justify-center text-white`}>
+//                   <s.icon className="text-xs" />
+//                 </a>
+//               ))}
+//             </div>
+
+//             {/* Search */}
+//             <Link href="/search" className="p-2 rounded-lg bg-gray-100 hover:bg-blue-100 text-gray-600 hover:text-blue-600">
+//               <FaSearch className="text-sm" />
+//             </Link>
+
+//             {/* Auth */}
+//             {!user ? (
+//               <div className="hidden md:flex items-center gap-2">
+//                 <Link href="/login" className="px-3 py-1.5 rounded-lg text-gray-700 hover:bg-blue-50">Connexion</Link>
+//                 <Link href="/register" className="px-3 py-1.5 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow">S'inscrire</Link>
+//               </div>
+//             ) : (
+//               <div className="relative">
+//                 <button
+//                   onClick={() => setProfileOpen((p) => !p)}
+//                   className="flex items-center gap-2 bg-white rounded-xl px-3 py-1.5 shadow border hover:border-blue-300"
+//                 >
+//                   <img src={user.photoURL || "/User-icon.png"} className="w-7 h-7 rounded-full object-cover" />
+//                   <span className="hidden md:inline text-sm font-semibold">{user.displayName || "Compte"}</span>
+//                   <FaCaretDown className={`text-xs transition-transform ${profileOpen ? "rotate-180" : ""}`} />
+//                 </button>
+
+//                 {profileOpen && (
+//                   <div className="absolute right-0 mt-2 w-48 bg-white shadow-xl border rounded-xl z-50 p-2">
+//                     <Link href="/profile" className="block px-3 py-2 text-sm hover:bg-blue-50">Mon profil</Link>
+//                     <button onClick={handleLogout} className="w-full text-left px-3 py-2 text-sm text-red-600 hover:bg-red-50">Déconnexion</button>
+//                   </div>
+//                 )}
+//               </div>
+//             )}
+
+//             {/* Mobile */}            
+//             <button 
+//               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+//               className="lg:hidden p-2 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 text-white"
+//             >
+//               {mobileMenuOpen ? "✕" : "☰"}
+//             </button>
+//           </div>
+//         </div>
+//       </div>
+
+//       {/* MENU MOBILE */}
+//       {mobileMenuOpen && (
+//         <div className="lg:hidden bg-white shadow-lg border-t p-4">
+//           <nav className="flex flex-col gap-2">
+
+//             {menuItems.map((item) => (
+//               <div key={item.name}>
+
+//                 {/* DROPDOWN MOBILE */}
+//                 {item.dropdown ? (
+//                   <>
+//                     <p className="font-bold text-gray-800 mt-2">{item.name}</p>
+//                     {item.children.map((sub) => (
+//                       <Link key={sub.name} href={sub.href} className="block pl-4 py-2 text-gray-700 hover:bg-blue-50">
+//                         {sub.name}
+//                       </Link>
+//                     ))}
+//                   </>
+//                 ) : (
+//                   <Link
+//                     href={item.href}
+//                     className="px-3 py-3 text-gray-700 rounded-lg hover:bg-blue-50"
+//                   >
+//                     {item.name}
+//                   </Link>
+//                 )}
+//               </div>
+//             ))}
+//           </nav>
+//         </div>
+//       )}
+//     </header>
+//   );
+// }
 "use client";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { 
   FaFacebookF, FaTwitter, FaLinkedin, FaWhatsapp, FaSearch, 
   FaUser, FaSignOutAlt, FaCaretDown 
@@ -1113,10 +1339,11 @@ import { usePathname } from "next/navigation";
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState(null);
   const [user, setUser] = useState(null);
   const [profileOpen, setProfileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const dropdownRef = useRef(null);
 
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (currentUser) => setUser(currentUser));
@@ -1129,6 +1356,18 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Fermer le dropdown en cliquant à l'extérieur
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setActiveDropdown(null);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   const pathname = usePathname();
 
   const handleLogout = async () => {
@@ -1139,7 +1378,6 @@ export default function Navbar() {
   // MENU + DROPDOWN
   const menuItems = [
     { name: "ACCUEIL", href: "/" },
-
     {
       name: "NOS ACTIVITÉS",
       dropdown: true,
@@ -1150,7 +1388,6 @@ export default function Navbar() {
         { name: "CONSTRUCTIONS", href: "/construction" },
       ],
     },
-
     { name: "NOTRE ÉQUIPE", href: "/equipe" },
     { name: "CONTACTS", href: "/contact" },
   ];
@@ -1161,6 +1398,10 @@ export default function Navbar() {
     { icon: FaLinkedin, href: "https://linkedin.com", color: "bg-blue-700 hover:bg-blue-800" },
     { icon: FaWhatsapp, href: "https://wa.me", color: "bg-green-500 hover:bg-green-600" },
   ];
+
+  const toggleDropdown = (index) => {
+    setActiveDropdown(activeDropdown === index ? null : index);
+  };
 
   return (
     <header className={`w-full sticky top-0 z-50 transition-all duration-300 ${
@@ -1185,33 +1426,35 @@ export default function Navbar() {
           />
           <nav className="hidden lg:flex items-center gap-1">
 
-            {menuItems.map((item) => {
+            {menuItems.map((item, index) => {
+              const isDropdownActive = activeDropdown === index;
 
               // DROPDOWN
               if (item.dropdown) {
                 return (
                   <div
                     key={item.name}
-                    className="relative group"
-                    onMouseEnter={() => setDropdownOpen(true)}
-                    onMouseLeave={() => setDropdownOpen(false)}
+                    className="relative"
+                    ref={dropdownRef}
                   >
                     <button
+                      onClick={() => toggleDropdown(index)}
                       className="px-4 py-2 rounded-xl font-semibold text-sm text-gray-700 
                                  hover:text-blue-700 hover:bg-blue-50 transition-all flex items-center gap-1"
                     >
                       {item.name}
-                      <FaCaretDown className={`transition-transform duration-300 ${dropdownOpen ? "rotate-180" : ""}`} />
+                      <FaCaretDown className={`transition-transform duration-300 ${isDropdownActive ? "rotate-180" : ""}`} />
                     </button>
 
                     {/* LISTE DÉROULANTE */}
-                    {dropdownOpen && (
+                    {isDropdownActive && (
                       <div className="absolute left-0 mt-2 w-52 bg-white rounded-xl shadow-lg border border-gray-200 animate-fade-down z-50">
                         {item.children.map((sub) => (
                           <Link
                             key={sub.name}
                             href={sub.href}
                             className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition"
+                            onClick={() => setActiveDropdown(null)}
                           >
                             {sub.name}
                           </Link>
@@ -1305,7 +1548,12 @@ export default function Navbar() {
                   <>
                     <p className="font-bold text-gray-800 mt-2">{item.name}</p>
                     {item.children.map((sub) => (
-                      <Link key={sub.name} href={sub.href} className="block pl-4 py-2 text-gray-700 hover:bg-blue-50">
+                      <Link 
+                        key={sub.name} 
+                        href={sub.href} 
+                        className="block pl-4 py-2 text-gray-700 hover:bg-blue-50"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
                         {sub.name}
                       </Link>
                     ))}
@@ -1314,6 +1562,7 @@ export default function Navbar() {
                   <Link
                     href={item.href}
                     className="px-3 py-3 text-gray-700 rounded-lg hover:bg-blue-50"
+                    onClick={() => setMobileMenuOpen(false)}
                   >
                     {item.name}
                   </Link>

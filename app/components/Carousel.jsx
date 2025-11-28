@@ -24,7 +24,8 @@
 import { useState } from "react";
 
 export default function Carousel() {
-  const images = ["/simple6.avif", "/simple4.avif", "/simple8.avif"];
+  const images = ["/what_1.png","/what_2.png","/what_3.png","/what_4.png","/what_5.png","/what_6.png",
+    "/what_7.png"];
 
   const [index, setIndex] = useState(0);
 

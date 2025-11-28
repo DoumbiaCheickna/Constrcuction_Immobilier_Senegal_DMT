@@ -24,7 +24,7 @@ return (
       </main>
         <Toaster position="top-right" />
       <Footer />
-      <WhatsAppButton />
+      {/* <WhatsAppButton /> */}
     </>
   );
 }

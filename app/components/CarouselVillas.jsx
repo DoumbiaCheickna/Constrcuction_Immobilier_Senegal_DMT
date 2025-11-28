@@ -276,7 +276,7 @@ import { db } from "../firebase/config";
 const PROPERTIES_STATIC = [
   {
     id: "s1",
-    img: "/simple1.avif",
+    img: "/what_1.png",
     prix: "35 000 000 FCFA",
     quartier: "Plateau",
     type: "Appartement",
@@ -289,7 +289,7 @@ const PROPERTIES_STATIC = [
   },
   {
     id: "s2",
-    img: "/simple4.avif",
+    img: "/what_2.png",
     prix: "120 000 000 FCFA",
     quartier: "Almadies",
     type: "Villa Haut Standing",
@@ -302,7 +302,7 @@ const PROPERTIES_STATIC = [
   },
   {
     id: "s3",
-    img: "/simple5.avif",
+    img: "/what_3.png",
     prix: "12 500 000 FCFA",
     quartier: "Mermoz",
     type: "Studio Meublé",
@@ -315,7 +315,7 @@ const PROPERTIES_STATIC = [
   },
   {
     id: "s4",
-    img: "/simple6.avif",
+    img: "/what_4.png",
     prix: "58 000 000 FCFA",
     quartier: "Keur Gorgui",
     type: "Duplex Contemporain",
@@ -328,7 +328,7 @@ const PROPERTIES_STATIC = [
   },
   {
     id: "s5",
-    img: "/simple7.avif",
+    img: "/what_5.png",
     prix: "85 000 000 FCFA",
     quartier: "Point E",
     type: "Appartement Luxe",
@@ -341,7 +341,7 @@ const PROPERTIES_STATIC = [
   },
   {
     id: "s6",
-    img: "/simple8.avif",
+    img: "/what_6.png",
     prix: "230 000 000 FCFA",
     quartier: "Ngor",
     type: "Villa Bord de Mer",
@@ -354,7 +354,7 @@ const PROPERTIES_STATIC = [
   },
   {
     id: "s7",
-    img: "/simple9.avif",
+    img: "/what_7.png",
     prix: "42 000 000 FCFA",
     quartier: "Yoff",
     type: "Maison Familiale",
@@ -367,7 +367,7 @@ const PROPERTIES_STATIC = [
   },
   {
     id: "s8",
-    img: "/simple2.avif",
+    img: "/what_8.png",
     prix: "30 500 000 FCFA",
     quartier: "Diamniadio",
     type: "Résidence Moderne",
