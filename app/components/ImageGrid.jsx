@@ -451,14 +451,14 @@ export default function ImageGrid({ filter }) {
               </div>
               <div className="flex gap-2">
                 <a
-                  href={`tel:+221338254340`}
+                  href={`tel:+221776304621`}
                   className="flex-1 inline-flex items-center justify-center gap-2 bg-green-50 border border-green-200 text-green-700 py-3 px-4 rounded-xl text-sm font-semibold hover:bg-green-100 hover:shadow-md transition-all duration-300 hover:scale-105 group"
                 >
                   <FaPhone className="text-green-600 group-hover:scale-110 transition-transform" />
                   <span>Appeler</span>
                 </a>
                 <a
-                  href={`mailto:contact@sabluximmobilier.com?subject=Demande d'information - ${item.titre}&body=Bonjour, je suis intéressé par le programme ${item.titre} à ${item.quartier} (${item.prix})`}
+                  href={`mailto:tidjane.diawara@dmtc-sn.com?subject=Demande d'information - ${item.titre}&body=Bonjour, je suis intéressé par le programme ${item.titre} à ${item.quartier} (${item.prix})`}
                   className="flex-1 inline-flex items-center justify-center gap-2 bg-blue-50 border border-blue-200 text-blue-700 py-3 px-4 rounded-xl text-sm font-semibold hover:bg-blue-100 hover:shadow-md transition-all duration-300 hover:scale-105 group"
                 >
                   <FaEnvelope className="text-blue-600 group-hover:scale-110 transition-transform" />
@@ -467,7 +467,7 @@ export default function ImageGrid({ filter }) {
 
                 {/* Bouton WhatsApp */}
                 <a
-                  href={`https://wa.me/221338254340?text=${encodeURIComponent(
+                  href={`https://wa.me/221776304621?text=${encodeURIComponent(
                     `Bonjour, je suis intéressé par le programme ${item.titre} à ${item.quartier} (${item.prix})\n\n${item.description}`
                   )}`}
                   target="_blank"
