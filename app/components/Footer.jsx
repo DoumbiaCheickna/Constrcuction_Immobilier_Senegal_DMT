@@ -450,12 +450,12 @@ export default function Footer() {
                 <div>
                   <p className="font-semibold">WhatsApp</p>
                   <a 
-                    href="https://wa.me/221771234567" 
+                    href="https://wa.me/221776304621" 
                     className="text-gray-300 hover:text-white transition-colors duration-300"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    +221 77 123 45 67
+                    +221 77 630 46 21
                   </a>
                   <p className="text-sm text-green-300">Contact direct</p>
                 </div>
@@ -603,7 +603,7 @@ export default function Footer() {
               </a>
               <span className="text-white/80">•</span>
               <a 
-                href="https://wa.me/221771234567"
+                href="https://wa.me/221776304621"
                 className="text-white hover:text-yellow-200 transition-colors font-semibold flex items-center gap-2"
                 target="_blank"
                 rel="noopener noreferrer"
