@@ -24,11 +24,19 @@ export default function AdminRegister() {
         email: user.email,
         createdAt: new Date()
       });
-      // Set cookie so middleware allows admin routes
       try {
-        document.cookie = `admin_auth=true; path=/; max-age=${60 * 60 * 24}`; // 1 day
-      } catch (e) {}
-      router.push("/admin");
+        const idToken = await user.getIdToken();
+        const res = await fetch('/api/session', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ idToken }),
+        });
+        if (res.ok) router.push('/admin');
+        else setError('Impossible de créer la session.');
+      } catch (e) {
+        console.error('Session creation error:', e);
+        setError('Impossible de créer la session.');
+      }
     } catch (err) {
       console.error(err);
       setError(err.message || "Erreur lors de la création du compte");

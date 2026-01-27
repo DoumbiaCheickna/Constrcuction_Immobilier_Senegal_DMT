@@ -429,11 +429,23 @@ export default function AdminLoginPage() {
         }
 
         if (isAdmin) {
-          // Set a cookie so middleware recognizes authenticated admin requests
+          // Create server-side session cookie via API
           try {
-            document.cookie = `admin_auth=true; path=/; max-age=${60 * 60 * 24}`; // 1 day
-          } catch (e) {}
-          router.push("/admin");
+            const idToken = await user.getIdToken();
+            const res = await fetch("/api/session", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ idToken }),
+            });
+            if (res.ok) {
+              router.push("/admin");
+            } else {
+              setError("Impossible de créer la session. Réessayez.");
+            }
+          } catch (e) {
+            console.error("Session creation error:", e);
+            setError("Impossible de créer la session. Réessayez.");
+          }
         } else {
           // Déconnecter l'utilisateur si pas admin
           setError("Compte non autorisé pour l'accès administrateur.");
