@@ -12,6 +12,12 @@ export default function useAuth() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (!auth || typeof onAuthStateChanged !== "function") {
+      console.warn("Firebase auth is not initialized. Skipping auth listener.");
+      setLoading(false);
+      return;
+    }
+
     const unsub = onAuthStateChanged(auth, async (u) => {
       setUser(u);
       if (u) {
@@ -39,7 +45,11 @@ export default function useAuth() {
       }
       setLoading(false);
     });
-    return () => unsub();
+    return () => {
+      try {
+        if (typeof unsub === "function") unsub();
+      } catch (e) {}
+    };
   }, []);
 
   return { user, isAdmin, loading };

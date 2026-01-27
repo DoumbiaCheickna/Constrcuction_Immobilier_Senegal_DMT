@@ -55,6 +55,9 @@ let storage;
 
 if (!getApps().length) {
   try {
+    if (!firebaseConfig.apiKey) {
+      console.error("Missing Firebase configuration. Make sure NEXT_PUBLIC_FIREBASE_* env vars are set.");
+    }
     app = initializeApp(firebaseConfig);
     console.log("Firebase initialized successfully");
   } catch (error) {
