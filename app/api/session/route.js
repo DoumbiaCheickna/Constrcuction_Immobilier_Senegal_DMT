@@ -1,18 +1,20 @@
 import { NextResponse } from "next/server";
-import admin from "../../lib/firebaseAdmin";
+import { getAdminApp } from "../../lib/firebaseAdmin";
 
 export const runtime = "nodejs";
 
 export async function POST(req) {
   try {
-    const { idToken } = await req.json();
+    const { idToken, tenant } = await req.json();
     if (!idToken) return NextResponse.json({ error: "Missing idToken" }, { status: 400 });
-
-    const decoded = await admin.auth().verifyIdToken(idToken);
+    const app = getAdminApp(tenant || "default");
+    if (!app) return NextResponse.json({ error: "Admin SDK not configured for tenant" }, { status: 500 });
+    const adminSdk = app.auth();
+    const decoded = await adminSdk.verifyIdToken(idToken);
     const uid = decoded.uid;
 
-    // Check admin role in Firestore
-    const doc = await admin.firestore().doc(`admins/${uid}`).get();
+    // Check admin role in Firestore (use admin SDK firestore)
+    const doc = await app.firestore().doc(`admins/${uid}`).get();
     if (!doc.exists) return NextResponse.json({ error: "Not an admin" }, { status: 403 });
 
     // Set secure HttpOnly cookie
