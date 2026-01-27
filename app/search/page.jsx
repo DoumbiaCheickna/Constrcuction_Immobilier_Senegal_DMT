@@ -519,7 +519,7 @@ export default function SearchPage() {
       </div>
 
       <Footer />
-        <WhatsAppButton />
+        {/* <WhatsAppButton /> */}
     </>
   );
 }

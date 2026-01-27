@@ -1583,8 +1583,8 @@ export default function Navbar() {
           <div className="mt-4 pt-4 border-t">
             {!user ? (
               <div className="flex flex-col gap-2">
-                <Link href="/login" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 rounded-xl bg-gray-100 text-center">Connexion</Link>
-                <Link href="/register" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white text-center">S'inscrire</Link>
+                {/* <Link href="/login" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 rounded-xl bg-gray-100 text-center">Connexion</Link>
+                <Link href="/register" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white text-center">S'inscrire</Link> */}
               </div>
             ) : (
               <div className="space-y-2">
