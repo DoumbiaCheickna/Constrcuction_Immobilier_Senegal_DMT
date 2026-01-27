@@ -1370,11 +1370,19 @@ export default function Navbar() {
 
   const handleLogout = async () => {
     try {
-      await signOut(auth);
-      setProfileOpen(false);
-      router.replace("/");
+      // clear server session cookie first
+      try { await fetch("/api/session", { method: "DELETE" }); } catch (e) { console.warn("Failed clearing session cookie:", e); }
+      try {
+        await signOut(auth);
+      } catch (e) {
+        console.warn("Client signOut failed:", e);
+      }
     } catch (e) {
       console.error("Erreur logout:", e);
+    }
+    finally {
+      try { setProfileOpen(false); } catch (e) { /* ignore */ }
+      try { window.location.href = "/"; } catch (e) { try { router.replace("/"); } catch (err) { console.warn("Redirect failed:", err); } }
     }
   };
 
@@ -1503,8 +1511,8 @@ export default function Navbar() {
             {/* Auth */}
             {!user ? (
               <div className="hidden md:flex items-center gap-2">
-                {/* <Link href="/login" className="px-3 py-1.5 rounded-lg text-gray-700 hover:bg-blue-50">Connexion</Link>
-                <Link href="/register" className="px-3 py-1.5 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow">S'inscrire</Link> */}
+                {/* <Link href="/login" className="px-3 py-1.5 rounded-lg text-gray-700 hover:bg-blue-50">Connexion</Link>*/}
+                <Link href="/login" className="px-3 py-1.5 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow">Connexion</Link> 
               </div>
             ) : (
               <div className="relative">
@@ -1583,8 +1591,8 @@ export default function Navbar() {
           <div className="mt-4 pt-4 border-t">
             {!user ? (
               <div className="flex flex-col gap-2">
-                {/* <Link href="/login" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 rounded-xl bg-gray-100 text-center">Connexion</Link>
-                <Link href="/register" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white text-center">S'inscrire</Link> */}
+                <Link href="/login" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 rounded-xl bg-gray-100 text-center">Connexion</Link>
+                <Link href="/register" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white text-center">S'inscrire</Link>
               </div>
             ) : (
               <div className="space-y-2">

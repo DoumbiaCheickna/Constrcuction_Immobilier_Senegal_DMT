@@ -449,7 +449,8 @@ export default function AdminLoginPage() {
         } else {
           // Déconnecter l'utilisateur si pas admin
           setError("Compte non autorisé pour l'accès administrateur.");
-          // Optionnel: sign out
+          // Clear server session cookie and sign out
+          try { await fetch('/api/session', { method: 'DELETE' }); } catch(e){}
           try { await auth.signOut(); } catch(e){}
         }
     } catch (err) {

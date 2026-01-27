@@ -13,6 +13,7 @@ export default function AdminIndex() {
 
   const handleSignOut = async () => {
     try {
+      try { await fetch('/api/session', { method: 'DELETE' }); } catch (e) { console.warn('clear session failed', e); }
       await signOut(auth);
       router.replace("/");
     } catch (e) {
@@ -31,14 +32,20 @@ export default function AdminIndex() {
             </div>
             <div className="flex items-center gap-4">
               {user && (
-                <div className="text-sm text-gray-700">Connecté en tant que <strong>{user.email}</strong></div>
+                <div className="flex items-center gap-3">
+                  <img src={user.photoURL || '/default-user.jpg'} alt={user.displayName || user.email} className="w-12 h-12 rounded-full object-cover border" />
+                  <div className="text-sm text-gray-700">
+                    <div className="font-semibold">{user.displayName || 'Profil'}</div>
+                    <div className="text-xs text-gray-500 truncate max-w-[180px]">{user.email}</div>
+                  </div>
+                </div>
               )}
-              <button
+              {/* <button
                 onClick={handleSignOut}
                 className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition"
               >
                 Déconnexion
-              </button>
+              </button> */}
             </div>
           </div>
 

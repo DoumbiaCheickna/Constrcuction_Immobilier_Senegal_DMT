@@ -2,7 +2,8 @@
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../firebase/config";
@@ -45,11 +46,30 @@ export default function LoginRedirectPage() {
         }
 
         if (isAdmin) {
-          router.push("/admin");
+          // create server-side session cookie for admin routes
+          try {
+            const idToken = await user.getIdToken();
+            const res = await fetch("/api/session", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ idToken }),
+            });
+            if (res.ok) {
+              router.push("/admin");
+            } else {
+              setError("Impossible de créer la session. Réessayez.");
+              try { await auth.signOut(); } catch(e){}
+            }
+          } catch (e) {
+            console.error("Session creation error:", e);
+            setError("Impossible de créer la session. Réessayez.");
+            try { await auth.signOut(); } catch(e){}
+          }
         } else {
           // Déconnecter l'utilisateur si pas admin
           setError("Compte non autorisé pour l'accès administrateur.");
-          // Optionnel: sign out
+          // Clear server session cookie and sign out
+          try { await fetch('/api/session', { method: 'DELETE' }); } catch(e){}
           try { await auth.signOut(); } catch(e){}
         }
     } catch (err) {
@@ -85,6 +105,8 @@ export default function LoginRedirectPage() {
 
 
   return (
+      <>
+      <Navbar />
        <div className="min-h-screen bg-gradient-to-br from-gray-900 to-blue-900 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
@@ -198,5 +220,7 @@ export default function LoginRedirectPage() {
         </div>
       </div>
     </div>
+    <Footer />
+     </>
   );
 }

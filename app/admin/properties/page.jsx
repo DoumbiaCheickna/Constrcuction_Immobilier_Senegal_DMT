@@ -201,7 +201,7 @@ export default function PropertiesPage() {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               {/* Formulaire */}
               <div className="lg:col-span-1">
-                <div className="bg-white rounded-2xl shadow-lg p-6 sticky top-6">
+                <div className="bg-white rounded-2xl shadow-lg p-6 lg:sticky lg:top-6">
                   <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
                     <FaHome className="text-blue-600" />
                     {editingId ? "Modifier le bien" : "Ajouter un nouveau bien"}
