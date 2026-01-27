@@ -3,6 +3,7 @@
 import { Toaster } from "react-hot-toast";
 import { useEffect } from "react";
 import { addVisitor } from "./lib/firestoreService";
+import "./globals.css";
 
 export default function RootLayout({ children }) {
   useEffect(() => {
