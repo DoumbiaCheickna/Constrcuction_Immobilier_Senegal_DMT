@@ -1334,21 +1334,19 @@ import {
   FaUser, FaSignOutAlt, FaCaretDown 
 } from "react-icons/fa";
 import { auth } from "../firebase/config";
-import { onAuthStateChanged, signOut } from "firebase/auth";
+import { signOut } from "firebase/auth";
+import useAuth from "../hooks/useAuth";
+import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
-  const [user, setUser] = useState(null);
   const [profileOpen, setProfileOpen] = useState(false);
+  const { user, isAdmin } = useAuth();
+  const router = useRouter();
   const [scrolled, setScrolled] = useState(false);
   const dropdownRef = useRef(null);
-
-  useEffect(() => {
-    const unsub = onAuthStateChanged(auth, (currentUser) => setUser(currentUser));
-    return () => unsub();
-  }, []);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -1371,8 +1369,13 @@ export default function Navbar() {
   const pathname = usePathname();
 
   const handleLogout = async () => {
-    await signOut(auth);
-    setProfileOpen(false);
+    try {
+      await signOut(auth);
+      setProfileOpen(false);
+      router.replace("/");
+    } catch (e) {
+      console.error("Erreur logout:", e);
+    }
   };
 
   // MENU + DROPDOWN
@@ -1409,8 +1412,6 @@ export default function Navbar() {
       scrolled ? "bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-200"
                : "bg-white border-b border-gray-100"
     }`}>
-
-      {/* Bandeau défilant */}
       <div className="hidden md:block bg-[#143F6B] text-white py-2 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4">
           <div className="whitespace-nowrap animate-marquee text-sm font-light">
@@ -1500,7 +1501,7 @@ export default function Navbar() {
             </Link>
 
             {/* Auth */}
-            {/* {!user ? (
+            {!user ? (
               <div className="hidden md:flex items-center gap-2">
                 <Link href="/login" className="px-3 py-1.5 rounded-lg text-gray-700 hover:bg-blue-50">Connexion</Link>
                 <Link href="/register" className="px-3 py-1.5 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow">S'inscrire</Link>
@@ -1512,18 +1513,25 @@ export default function Navbar() {
                   className="flex items-center gap-2 bg-white rounded-xl px-3 py-1.5 shadow border hover:border-blue-300"
                 >
                   <img src={user.photoURL || "/User-icon.png"} className="w-7 h-7 rounded-full object-cover" />
-                  <span className="hidden md:inline text-sm font-semibold">{user.displayName || "Compte"}</span>
+                  <span className="hidden md:inline text-sm font-semibold">{user.displayName?.split(' ')[0] || "Compte"}</span>
                   <FaCaretDown className={`text-xs transition-transform ${profileOpen ? "rotate-180" : ""}`} />
                 </button>
 
                 {profileOpen && (
-                  <div className="absolute right-0 mt-2 w-48 bg-white shadow-xl border rounded-xl z-50 p-2">
-                    <Link href="/profile" className="block px-3 py-2 text-sm hover:bg-blue-50">Mon profil</Link>
+                  <div className="absolute right-0 mt-2 w-56 bg-white shadow-xl border rounded-xl z-50 overflow-hidden">
+                    <div className="p-3 border-b border-gray-100">
+                      <p className="font-semibold text-gray-800 text-sm">{user.displayName || "Utilisateur"}</p>
+                      <p className="text-xs text-gray-500 truncate">{user.email}</p>
+                    </div>
+                    <Link href="/profile" onClick={() => setProfileOpen(false)} className="block px-3 py-2 text-sm hover:bg-blue-50">Mon profil</Link>
+                    {isAdmin && (
+                      <Link href="/admin" onClick={() => setProfileOpen(false)} className="block px-3 py-2 text-sm hover:bg-blue-50">Tableau de bord</Link>
+                    )}
                     <button onClick={handleLogout} className="w-full text-left px-3 py-2 text-sm text-red-600 hover:bg-red-50">Déconnexion</button>
                   </div>
                 )}
               </div>
-            )} */}
+            )}
 
             {/* Mobile */}            
             <button 
@@ -1571,6 +1579,31 @@ export default function Navbar() {
               </div>
             ))}
           </nav>
+
+          <div className="mt-4 pt-4 border-t">
+            {!user ? (
+              <div className="flex flex-col gap-2">
+                <Link href="/login" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 rounded-xl bg-gray-100 text-center">Connexion</Link>
+                <Link href="/register" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white text-center">S'inscrire</Link>
+              </div>
+            ) : (
+              <div className="space-y-2">
+                <div className="flex items-center gap-3 px-3 py-2 bg-gray-50 rounded-xl">
+                  <img src={user.photoURL || "/User-icon.png"} alt="avatar" className="w-8 h-8 rounded-full border-2 border-blue-500" />
+                  <div>
+                    <p className="font-semibold text-gray-800 text-sm">{user.displayName || "Utilisateur"}</p>
+                    <p className="text-xs text-gray-500">{user.email}</p>
+                  </div>
+                </div>
+                <Link href="/profile" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 rounded-xl hover:bg-blue-50">Mon profil</Link>
+                {isAdmin && (
+                  <Link href="/admin" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 rounded-xl hover:bg-blue-50">Tableau de bord</Link>
+                )}
+                <button onClick={() => { handleLogout(); setMobileMenuOpen(false); }} className="w-full text-left px-3 py-2 rounded-xl text-red-600">Déconnexion</button>
+              </div>
+            )}
+          </div>
+
         </div>
       )}
     </header>

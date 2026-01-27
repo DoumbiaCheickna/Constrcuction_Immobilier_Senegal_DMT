@@ -1,7 +1,48 @@
+// "use client";
+// import { useState } from "react";
+// import RequireAuth from "../../components/RequireAuth";
+// import { db } from "../../firebase/config";
+// import { collection, addDoc } from "firebase/firestore";
+// import { useRouter } from "next/navigation";
+
+// export default function NewProperty() {
+//   const [title, setTitle] = useState("");
+//   const [loading, setLoading] = useState(false);
+//   const router = useRouter();
+
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     setLoading(true);
+//     try {
+//       await addDoc(collection(db, "properties"), {
+//         title,
+//         createdAt: new Date().toISOString()
+//       });
+//       router.push("/admin/properties");
+//     } catch (e) {
+//       console.error("Error adding property:", e);
+//       setLoading(false);
+//     }
+//   };
+
+//   return (
+//     <RequireAuth adminOnly>
+//       <div>
+//         <h2 className="text-xl font-semibold mb-4">Ajouter un bien</h2>
+//         <form onSubmit={handleSubmit} className="space-y-3 max-w-md">
+//           <input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Titre" className="w-full p-2 border rounded" required />
+//           <div>
+//             <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded" disabled={loading}>{loading?"Ajout...":"Ajouter"}</button>
+//           </div>
+//         </form>
+//       </div>
+//     </RequireAuth>
+//   );
+// }
 "use client";
 import { useState } from "react";
-import { uploadImageFile } from "../../../lib/uploadImage";
-import { createProperty } from "../../../lib/firestoreService";
+import { uploadImageFile } from "../../lib/uploadImage";
+import { createProperty } from "../../lib/firestoreService";
 import { useRouter } from "next/navigation";
 
 export default function NewProperty() {
