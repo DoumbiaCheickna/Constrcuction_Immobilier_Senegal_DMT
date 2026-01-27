@@ -91,7 +91,7 @@ export default function EquipePage() {
     </div>
     </main>
         <Footer />
-          <WhatsAppButton />
+          {/* <WhatsAppButton /> */}
     </>
   );
 }

@@ -1,10 +1,13 @@
+"use client";
+
 import { Toaster } from "react-hot-toast";
 import { useEffect } from "react";
-import { addVisitor } from "../lib/firestoreService";
+import { addVisitor } from "./lib/firestoreService";
+
 export default function RootLayout({ children }) {
-useEffect(() => {
-  addVisitor({ ip: "unknown", url: window.location.pathname }).catch(()=>{});
-}, []);
+  useEffect(() => {
+    addVisitor({ ip: "unknown", url: window.location.pathname }).catch(() => {});
+  }, []);
 
   return (
     <html lang="fr">

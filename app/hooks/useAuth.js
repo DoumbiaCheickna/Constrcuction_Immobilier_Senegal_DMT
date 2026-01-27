@@ -2,9 +2,9 @@
 "use client";
 import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "../lib/firebaseClient";
-import { doc, getDoc } from "firebase/firestore";
-import { db } from "../lib/firebaseClient";
+import { auth } from "../firebase/config";
+import { doc, getDoc, collection, query, where, getDocs } from "firebase/firestore";
+import { db } from "../firebase/config";
 
 export default function useAuth() {
   const [user, setUser] = useState(null);
@@ -15,9 +15,25 @@ export default function useAuth() {
     const unsub = onAuthStateChanged(auth, async (u) => {
       setUser(u);
       if (u) {
-        // check admins collection for admin rights
-        const d = await getDoc(doc(db, "admins", u.uid));
-        setIsAdmin(d.exists());
+        // check admins collectionifi admin rights
+        try {
+          const d = await getDoc(doc(db, "admins", u.uid));
+          if (d.exists()) {
+            setIsAdmin(true);
+          } else {
+            // Fallback: lookup by email
+            try {
+              const adminsRef = collection(db, "admins");
+              const q = query(adminsRef, where("email", "==", u.email));
+              const qs = await getDocs(q);
+              setIsAdmin(qs.size > 0);
+            } catch (qe) {
+              setIsAdmin(false);
+            }
+          }
+        } catch (e) {
+          setIsAdmin(false);
+        }
       } else {
         setIsAdmin(false);
       }

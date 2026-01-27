@@ -1,61 +1,44 @@
-// "use client";
-// export default function Visitors() {
-//   const visitors = [
-//     { id: 1, name: "Amadou", date: "Aujourd’hui" },
-//     { id: 2, name: "Fatou", date: "Hier" },
-//   ];
-//   return (
-//     <div>
-//       <h1 className="text-2xl font-bold mb-6">Visiteurs</h1>
-
-//       <ul className="bg-white p-4 rounded-xl shadow divide-y">
-//         {visitors.map(v => (
-//           <li key={v.id} className="p-3 flex justify-between">
-//             <span>{v.name}</span>
-//             <span className="text-gray-500">{v.date}</span>
-//           </li>
-//         ))}
-//       </ul>
-//     </div>
-//   );
-// }
 "use client";
 import { useEffect, useState } from "react";
-
+import RequireAuth from "../../components/RequireAuth";
+import { db } from "../../lib/firebaseClient";
 import { collection, getDocs } from "firebase/firestore";
-import { db } from "../../firebase/config";
 
-export default function VisitorsPage() {
-  const [visitors, setVisitors] = useState([]);
+export default function AdminVisitors() {
+  const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const fetchVisitors = async () => {
-    const snapshot = await getDocs(collection(db, "visitors"));
-    setVisitors(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
-  };
-
-  useEffect(() => { fetchVisitors(); }, []);
+  useEffect(() => {
+    async function fetch() {
+      try {
+        const q = collection(db, "visitors");
+        const snap = await getDocs(q);
+        setItems(snap.docs.map(d => ({ id: d.id, ...d.data() })));
+      } catch (e) {
+        console.error("Error fetching visitors:", e);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetch();
+  }, []);
 
   return (
-    <div>
-      <h1 className="text-2xl font-bold mb-4">Visiteurs</h1>
-      <table className="w-full border">
-        <thead>
-          <tr className="bg-gray-200">
-            <th className="p-2 border">Nom</th>
-            <th className="p-2 border">Email</th>
-            <th className="p-2 border">Date visite</th>
-          </tr>
-        </thead>
-        <tbody>
-          {visitors.map(v => (
-            <tr key={v.id}>
-              <td className="p-2 border">{v.name}</td>
-              <td className="p-2 border">{v.email}</td>
-              <td className="p-2 border">{v.date}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+    <RequireAuth adminOnly>
+      <div>
+        <h2 className="text-xl font-semibold mb-4">Visiteurs</h2>
+        {loading ? <div>Chargement...</div> : (
+          <ul className="space-y-2">
+            {items.map(it => (
+              <li key={it.id} className="bg-white p-3 rounded shadow">
+                <div className="font-semibold">{it.name || it.email || "Visiteur"}</div>
+                <div className="text-sm text-gray-600">ID: {it.id}</div>
+              </li>
+            ))}
+            {items.length === 0 && <li>Aucun visiteur.</li>}
+          </ul>
+        )}
+      </div>
+    </RequireAuth>
   );
 }
