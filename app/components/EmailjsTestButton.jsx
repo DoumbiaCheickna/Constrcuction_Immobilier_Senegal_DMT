@@ -7,6 +7,9 @@ import { addEmailLog } from "../lib/firestoreService";
 export default function EmailjsTestButton() {
   const [sending, setSending] = useState(false);
 
+  // Hide the test button on the homepage
+  if (typeof window !== 'undefined' && window.location.pathname === '/') return null;
+
   async function handleClick() {
     setSending(true);
     toast.loading('Envoi en cours...');

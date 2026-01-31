@@ -75,7 +75,8 @@ export default function RootLayout({ children }) {
       <body>
         <Toaster position="top-right" />
         {children}
-        {/* Test button to trigger EmailJS notification manually */}
+        {/* Test button to trigger EmailJS notification manually (hidden on homepage) */}
+        {typeof window !== 'undefined' && window.location.pathname !== '/' && (
         <div className="fixed bottom-4 left-4 z-50">
           <button
             id="emailjs-test-btn"
@@ -111,6 +112,7 @@ export default function RootLayout({ children }) {
             Tester notification
           </button>
         </div>
+        )}
       </body>
     </html>
   );
