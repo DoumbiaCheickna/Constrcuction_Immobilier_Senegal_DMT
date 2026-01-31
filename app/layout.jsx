@@ -76,7 +76,10 @@ export default function RootLayout({ children }) {
         <Toaster position="top-right" />
         {children}
         {/* Test button to trigger EmailJS notification manually (hidden on homepage) */}
-        {typeof window !== 'undefined' && window.location.pathname !== '/' && (
+        {typeof window !== 'undefined' && (function(){
+          const isAdmin = document.cookie.split(';').map(s=>s.trim()).includes('admin_auth=true');
+          return isAdmin && window.location.pathname !== '/';
+        })() && (
         <div className="fixed bottom-4 left-4 z-50">
           <button
             id="emailjs-test-btn"

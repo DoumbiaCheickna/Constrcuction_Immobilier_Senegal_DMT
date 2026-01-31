@@ -7,8 +7,13 @@ import { addEmailLog } from "../lib/firestoreService";
 export default function EmailjsTestButton() {
   const [sending, setSending] = useState(false);
 
-  // Hide the test button on the homepage
-  if (typeof window !== 'undefined' && window.location.pathname === '/') return null;
+  // Show the test button only to admins (admin_auth cookie)
+  if (typeof window !== 'undefined') {
+    const isAdmin = document.cookie.split(';').map(s=>s.trim()).includes('admin_auth=true');
+    if (!isAdmin) return null;
+  } else {
+    return null;
+  }
 
   async function handleClick() {
     setSending(true);
